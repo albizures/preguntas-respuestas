@@ -8,10 +8,6 @@ angular.module('app.services').factory('Data', function ($http, ngToast, Utils) 
 			3 : 'warning'
 		},
 		obj = {};
-	window.toast = function	() {
-		console.log(ngToast);
-		return ngToast.create('a toast message...');
-	};
 	obj.toast = function (data) {
 		console.log({
 			className: types[data.code],
