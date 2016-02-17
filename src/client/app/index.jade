@@ -1,0 +1,16 @@
+doctype html
+html(lang="es")
+	head
+		meta(charset='utf-8')
+		meta(http-equiv='X-UA-Compatible', content='IE=edge')
+		base(href='/')
+		title= htmlWebpackPlugin.options.title
+		meta(name='description', content='')
+		link(rel="stylesheet", href="/style.css")
+		meta(name='viewport', content='width=device-width, initial-scale=1')
+	body(ng-app="app")
+		include ./navbar.jade
+		toast
+		section.main.card.row 
+			.articles(ui-view='')
+		script(src='http://localhost:35730/livereload.js', charset='utf-8')

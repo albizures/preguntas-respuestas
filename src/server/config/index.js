@@ -1,13 +1,18 @@
-const livereload = require('express-livereload'),
-      path = require('path'),
-      express = require('express'),
-      favicon = require('serve-favicon');
+const path = require('path'),
 
-module.exports = function (app) {
-  app.use(express.static(path.resolve(__dirname,'..' ,'..','..','dist')));
-  app.use(favicon('src/favicon.ico'));
-  livereload(app, {
-    port : '35730',
-    watchDir : path.resolve(__dirname,'..' ,'..','..','dist')
-  });
+	ROOT_PATH = path.join(__dirname,'..' , '..', '..'),
+	BUILD_PATH = path.join(ROOT_PATH, 'dist'),
+	CLIENT_PATH = path.join(ROOT_PATH,'src', 'client'),
+	APP_PATH = path.join(CLIENT_PATH,'app', 'index.js'),
+	MODULES_PATH = path.join(ROOT_PATH, 'node_modules'),
+	ASSETS_PATH = path.join(CLIENT_PATH, 'assets');
+module.exports = {
+	ROOT_PATH,
+	BUILD_PATH,
+	CLIENT_PATH,
+	APP_PATH,
+	MODULES_PATH,
+	ASSETS_PATH,
+	PORT : 8080
 }
+module.exports.secret = require('crypto').randomBytes(8).toString('hex');

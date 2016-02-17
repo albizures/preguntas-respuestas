@@ -1,0 +1,15 @@
+.modal-header
+	h3.modal-title Cambiar contrase&ntilde;a
+.modal-body(ng-form="password")
+	.form-group(ng-if="!administrador")
+		label(for="curretPass") Contrase&ntilde;a actual
+		input#curretPass.form-control(ng-model="$parent.currentPass", required="", type="password", placeholder="Contraseña actual")
+	.form-group
+		label(for="newPass") Nueva contrase&ntilde;a
+		input#newPass.form-control(ng-model="newPass", required="", type="password", placeholder="Nueva contraseña")
+	.form-group
+		label(for="tempPass") Repita la contrase&ntilde;a
+		input#tempPass.form-control(ng-model="tempPass", required="", type="password", placeholder="Nueva contraseña")
+.modal-footer
+	button.btn.btn2.btn-primary(ng-disabled="password.$invalid", ng-click="cambiar()") Cambiar
+	button.btn.btn2.btn-warning(ng-click="cancel()") Cancelar

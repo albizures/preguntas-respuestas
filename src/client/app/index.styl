@@ -1,0 +1,111 @@
+@import "../../../node_modules/bootstrap/dist/css/bootstrap.css"
+@import "../../../node_modules/font-awesome/css/font-awesome.css"
+@import "../../../node_modules/ng-table/dist/ng-table.min.css"
+@import "../../../node_modules/ng-toast/dist/ngToast.min.css"
+@import "../../../node_modules/ng-toast/dist/ngToast-animations.min.css"
+
+[ng-click],
+[data-ng-click],
+[x-ng-click]
+  cursor pointer
+.load
+  transform-origin 50%
+.load.active
+  animation load infinite 1s
+.close
+  outline 0
+.list-group
+  max-height 300px;
+  overflow-y scroll
+tr.active.preguntas td
+  background-color black !important
+  color white
+tr.success.preguntas td
+  background-color green !important
+tr.danger.preguntas td
+  background-color red !important
+tr.info.preguntas td
+  background-color blue !important
+tr.warning.preguntas td
+  background-color yellow !important
+@keyframes load
+  0%
+    transform  rotate(0deg)
+  100%
+    transform  rotate(360deg)
+
+.z-depth-1,header,.card,.btn2{
+  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12); }
+
+.z-depth-1-half{
+  box-shadow: 0 5px 11px 0 rgba(0, 0, 0, 0.18), 0 4px 15px 0 rgba(0, 0, 0, 0.15); }
+
+.z-depth-2 {
+  box-shadow: 0 8px 17px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); }
+
+.z-depth-3 {
+  box-shadow: 0 12px 15px 0 rgba(0, 0, 0, 0.24), 0 17px 50px 0 rgba(0, 0, 0, 0.19); }
+
+.z-depth-4 {
+  box-shadow: 0 16px 28px 0 rgba(0, 0, 0, 0.22), 0 25px 55px 0 rgba(0, 0, 0, 0.21); }
+
+.z-depth-5 {
+  box-shadow: 0 27px 24px 0 rgba(0, 0, 0, 0.2), 0 40px 77px 0 rgba(0, 0, 0, 0.22); }
+.truncate
+  overflow: hidden
+  text-overflow: ellipsis
+html
+  margin 0
+  padding 0
+body
+  background #e6e6e6
+  .main
+    //z-index 1
+    position: relative
+    margin 20px 20px
+    margin-top -150px
+    min-height 300px;
+    .articles
+      width 100%
+      margin-right 1.5%
+      float left
+      article
+        padding 20px
+        background #fff
+        margin-bottom 20px
+  article
+    padding 20px
+    background #fff
+    margin-bottom 20px
+  footer
+    background #000
+    color #fff
+    clear both
+    padding  10px 0px
+    text-align  center
+
+  .modal-backdrop {
+    height: 100%;
+  }
+.fecha
+  margin-bottom 15px
+  select
+    float left
+    display inline-block
+    vertical-align top
+    width 30%
+    &:nth-child(2)
+      width 40%
+
+
+@import './navbar.styl';
+// injector
+@import './style/btn.styl';
+@import './style/card.styl';
+@import './style/header.styl';
+@import './style/menu.styl';
+@import './style/preview.styl';
+@import './style/table.styl';
+@import './states/login/login.styl';
+@import './states/usuarios/usuarios.styl';
+// endinjector

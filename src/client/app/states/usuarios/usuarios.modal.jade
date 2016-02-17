@@ -1,0 +1,38 @@
+div
+	.modal-header
+		h3.modal-title Ingrese los datos
+	.modal-body
+		form(novalidate="", name="formOpcion")
+			.form-group
+				label(for="nombre") Nombre de usuario
+				input#nombre.form-control(ng-model="usuario.nombre", maxlength="10", type="text", placeholder="Nombre de usuario", required="")
+			.form-group
+				label(for="nombres") Nombres
+				input#nombres.form-control(ng-model="usuario.nombres", type="text", placeholder="Nombres", required="")
+			.form-group
+				label(for="apellidos") Apellidos
+				input#apellidos.form-control(ng-model="usuario.apellidos", type="text", placeholder="Apellidos", required="")
+			.form-group(ng-if="contrasena")
+				label(for="clave") Contrase&ntilde;a
+				input#clave.form-control(ng-model="usuario.clave", type="text", placeholder="Contraseña", required="")
+			.form-group
+				label(for="cargo") Cargo
+				input#cargo.form-control(ng-model="usuario.cargo", type="text", placeholder="Cargo", required="")
+			.form-group
+				label(for="rol") Rol
+				select#rol.form-control(ng-options="item.id as item.nombre for item in roles", ng-model="usuario.idrol", name="rol", required="")
+					option(default="") Elija una opcion
+			.form-group
+				label(for="idorganizacion") Organizacion
+				select#idorganizacion.form-control(ng-model="usuario.idorganizacion", ng-options="item.id as item.nombre for item in organizaciones", type="number", placeholder="Organizacion", required="")
+					option(selected="selected") Elija una opcion
+			.form-group
+				label(for="estado") Estado
+				select#estado.form-control(ng-options="item.id as item.nombre for item in estados", ng-model="usuario.estado", name="estado", required="")
+					opcion(selected="selected") Elija una opcion
+			.form-group
+				label(for="email") Correo
+				input#email.form-control(ng-model="usuario.email", type="email", placeholder="Correo", required="")
+	.modal-footer
+		button.btn.btn-primary(ng-disabled="!formOpcion.$valid", ng-click="ok()") Aceptar
+		button.btn.btn-warning(ng-click="cancel()") Cancelar

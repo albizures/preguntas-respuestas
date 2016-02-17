@@ -1,0 +1,37 @@
+div
+	br
+	section.form-inline
+		button.btn.btn2.btn-default.pull-right(ng-click="limpiar()") Limpiar filtro
+		button.btn.btn2.btn-primary.pull-right(type="button", ng-model="filtro", uib-btn-checkbox="")
+			span.glyphicon.glyphicon-filter
+		button.btn.btn2.btn-primary(ng-click="agregar()")
+			i.icon-white.icon-plus
+			|  Agregar usuario
+	br
+	table.table.table-striped(ng-table="tableUsuarios", show-filter="filtro")
+		tr(ng-repeat="usuario in $data")
+			td(data-title="'Usuario'", sortable="'nombre'", filter="{ 'nombre': 'text' }")
+				span {{usuario.nombre}}
+			td(data-title="'Nombres'", sortable="'nombres'", filter="{ 'nombres': 'text' }")
+				span {{usuario.nombres}}
+			td(data-title="'Apellidos'", sortable="'apellidos'", filter="{ 'apellidos': 'text' }")
+				span {{usuario.apellidos}}
+			td(data-title="'Rol'", sortable="'rol'", filter="{ 'rol': 'text' }")
+				span {{usuario.rol}}
+			td(data-title="'Organizacion'", sortable="'organizacion'", filter="{ 'organizacion': 'text' }")
+				span {{usuario.organizacion}}
+			td(data-title="'Estado'", sortable="'nombreEstado'", filter="{ 'nombreEstado': 'text' }")
+				span {{usuario.nombreEstado}}
+			td(data-title="'Correo'", sortable="'email'", filter="{ 'email': 'text' }")
+				span {{usuario.email}}
+			td(data-title="'Fecha'", sortable="'fecha'", filter="{ 'fecha': 'text' }")
+				span {{usuario.fecha | date:&apos;dd-MM-yyyy HH:mm:ss&apos;}}
+			td(data-title="'Cargo'", sortable="'cargo'", filter="{ 'cargo': 'text' }")
+				span {{usuario.cargo}}
+			td(data-title="'Acciones'", width="125")
+				button.btn.btn-primary.btn-xs(ng-click="editar(usuario.id); usuario.$edit = true")
+					span.glyphicon.glyphicon-pencil
+				button.btn.btn-danger.btn-xs(ng-click="eliminar(usuario.id,$index)")
+					span.glyphicon.glyphicon-remove
+				button.btn.btn-warning.btn-xs(ng-click="cambiarPass(usuario.nombre)")
+					i.fa.fa-lock
