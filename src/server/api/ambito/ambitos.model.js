@@ -13,7 +13,7 @@ module.exports.post = function (data,cb) {
 			resp.message = 'Se agrego correctamente';
 			resp.data = rows[0];
 		}
-		if (cb) {    // que hace aqui???
+		if (cb) {		// que hace aqui???
 			cb(resp);
 		}
 	});

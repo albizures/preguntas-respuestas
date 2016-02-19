@@ -24,6 +24,23 @@ module.exports.searchName = function (name, cb) {
 		}
 	});
 }
+module.exports.update = function (data, cb) {
+	const query = 'call sp_upd_seg_usuario( ?, ?, ?, ?, ?, ?, ?, ?, ?)';
+	connection(query, data, function (err, rows) {
+		// TODO: verificar que si se hizo el cambio
+		let code = 0;
+		if (err) {
+			code = 1;
+			rows = [];
+			err = 'Ocurrio un error al intentar editar al usuario, intentelo de nuevo';
+		}else{
+			err = 'Se edito correctamente';
+		}
+		if (cb) {
+			cb(result(code, err, rows[0]));
+		}
+	});
+};
 module.exports.getAll = function (cb) {
 	const query = 'call sp_sel_seg_usuarios()';
 	connection(query, function (err, rows) {

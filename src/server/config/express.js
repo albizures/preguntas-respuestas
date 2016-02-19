@@ -2,10 +2,8 @@ const express = require('express'),
 	jwt = require('express-jwt'),
 	livereload = require('express-livereload'),
 	bodyParser = require('body-parser'),
-	{
-		secret,
-		BUILD_PATH
-	} = require('./index.js'),
+	secret = require('./index.js').secret,
+	BUILD_PATH = require('./index.js').BUILD_PATH,
 	favicon = require('serve-favicon');
 
 module.exports = function (app) {

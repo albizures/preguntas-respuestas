@@ -6,8 +6,8 @@ module.exports = function (grunt) {
 	grunt.initConfig({
 		watch: {
 			options: {
-	      event: ['added', 'deleted'],
-	    },
+				event: ['added', 'deleted'],
+			},
 			states: {
 				files: ['src/client/app/states/**/**.js'],
 				tasks: ['injector:states']
@@ -117,7 +117,6 @@ module.exports = function (grunt) {
 				script: 'index.js',
 				options : {
 					"verbose": true,
-					nodeArgs: ['--harmony_destructuring'],
 					"watch" : [
 						"src/server/"
 					],

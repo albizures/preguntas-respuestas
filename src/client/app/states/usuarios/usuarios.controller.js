@@ -1,6 +1,6 @@
 'use strict';
 const templateModal = require('./usuarios.modal.jade')();
-angular.module('app.states').controller('UsuariosCtrl', function (ngToast, $scope, Data, $rootScope, NgTableParams, $uibModal, Utils) {
+angular.module('app.states').controller('UsuariosCtrl', function ($scope, Data, $rootScope, NgTableParams, $uibModal, Utils) {
 	$scope.filtro = false;
 	$scope.$watch('filtro', function (newValue, oldValue) {
 		if (newValue !== undefined && newValue !== oldValue) {
@@ -9,7 +9,6 @@ angular.module('app.states').controller('UsuariosCtrl', function (ngToast, $scop
 			}
 		}
 	});
-	ngToast.create('a toast message...');
 	Data.get('usuario')
 		.then(function (results) {
 			$scope.usuarios = results.data;
@@ -53,10 +52,10 @@ angular.module('app.states').controller('UsuariosCtrl', function (ngToast, $scop
 			}
 		});
 		modalUsuarios.result.then(function (usuario) {
-			Data.put('/', usuario)
+			Data.put('usuario', usuario)
 				.then(function (results) {
 					if (results.code == 0) {
-						for (index in $scope.usuarios) {
+						for (let index in $scope.usuarios) {
 							if ($scope.usuarios[index].id == usuario.id) {
 								$scope.usuarios[index] = usuario;
 								$scope.tableUsuarios.reload();
@@ -79,6 +78,7 @@ angular.module('app.states').controller('UsuariosCtrl', function (ngToast, $scop
 		});
 		modalOpciones.result.then(function (usuario) {
 			console.log(usuario);
+			// TODO: Pasar el post al modal antes de cerrar
 			Data.post('usuario', usuario)
 				.then(function (results) {
 					Data.toast(results);
@@ -92,6 +92,7 @@ angular.module('app.states').controller('UsuariosCtrl', function (ngToast, $scop
 		});
 	};
 	$scope.eliminar = function (id) {
+		// TODO: error cuando se esta en la segunda pagina de la tabla y solo hay uno y ese es el que se elimina
 		Data.delete('usuario/' + id)
 			.then(function (results) {
 				for (let index in $scope.usuarios) {
@@ -102,7 +103,6 @@ angular.module('app.states').controller('UsuariosCtrl', function (ngToast, $scop
 						break;
 					}
 				}
-
 			});
 	};
 });

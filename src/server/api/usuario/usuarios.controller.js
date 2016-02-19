@@ -1,8 +1,9 @@
+'use strict';
 const model = require("./usuarios.model.js"),
 			passport = require('../../config/passport.js');
 
 module.exports.post = function (req, res) {
-	var data = [
+	let data = [
 		req.body.nombre,
 		req.body.nombres,
 		req.body.apellidos,
@@ -36,7 +37,20 @@ module.exports.getEstado = function (req, res) {
 	});
 }
 module.exports.update = function (req, res) {
-
+	let data = [
+		req.body.id,
+		req.body.nombre,
+		req.body.nombres,
+		req.body.apellidos,
+		req.body.idrol,
+		req.body.idorganizacion,
+		req.body.estado,
+		req.body.email,
+		req.body.cargo
+	];
+	model.update(data, function (result) {
+		res.json(result);
+	});
 };
 module.exports.delete = function (req, res) {
 	model.delete(req.params.id, function (result) {

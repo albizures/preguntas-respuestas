@@ -1,4 +1,4 @@
-const { BUILD_PATH } = require("./config"),
+const BUILD_PATH = require("./config").BUILD_PATH,
 			path = require('path');
 
 function getIndex(req, res) {

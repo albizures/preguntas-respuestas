@@ -9,7 +9,7 @@ router.get('/', controller.getAll);
 router.get('/estado', controller.getEstado);
 router.get('/:id', controller.getOne);
 
-router.put('/:id', controller.update);
+router.put('/', controller.update);
 router.put('/pass', controller.updatePass);
 
 router.delete('/:id', controller.delete);

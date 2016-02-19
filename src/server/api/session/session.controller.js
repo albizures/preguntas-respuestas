@@ -6,11 +6,11 @@ const model = require("./session.model.js"),
 
 
 function createToken(user) {
-  return jwt.sign(_.omit(user, 'clave'), config.secret, { expiresIn: 60 * 60 * 12 });
+	return jwt.sign(_.omit(user, 'clave'), config.secret, { expiresIn: 60 * 60 * 12 * 100 });
 }
 
 module.exports.logout = function (req, res) {
-
+	res.json([]);
 };
 module.exports.session = function (req, res) {
 	if (!req.user){

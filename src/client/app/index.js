@@ -18,9 +18,15 @@ angular.module("app", [
 	require('./services'),
 	require('./states'),
 	require('./directives')
-]).config(function (jwtInterceptorProvider, $urlRouterProvider, $locationProvider, $httpProvider) {
+]).config(function (jwtInterceptorProvider, $urlRouterProvider, $locationProvider, $httpProvider, ngToastProvider) {
 	$urlRouterProvider.otherwise('/');
 	$locationProvider.html5Mode(true);
+	ngToastProvider.configure({
+		//verticalPosition: 'bottom',
+		//horizontalPosition: 'center',
+		animation : "slide",
+		maxNumber: 3
+	});
 	jwtInterceptorProvider.tokenGetter = function (store) {
 		return store.get('jwt');
 	};

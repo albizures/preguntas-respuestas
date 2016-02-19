@@ -1,13 +1,14 @@
 const express = require('express'),
-      app = express(),
-      { BUILD_PATH,PORT } = require("./config");
-
+			app = express(),
+			BUILD_PATH= require("./config").BUILD_PATH,
+			PORT = require("./config").PORT;
+			
 require("./config/express.js")(app);
 require("./router.js")(app);
 
 const port = process.env.PORT || PORT;
 const server = app.listen(port, function () {
-  console.log('Run http://%s:%s', server.address().address, port);
+	console.log('Run http://%s:%s', server.address().address, port);
 });
 
 module.exports = app;
