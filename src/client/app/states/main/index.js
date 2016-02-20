@@ -4,8 +4,6 @@ angular.module('app.states').config(function ($stateProvider) {
 		.state('main', {
 			url: '/',
 			template: require('./main.jade'),
-			controller: function (Auth) {
-				Auth.currentUser();
-			}
+			controller: function (Auth) {}
 		});
 });
