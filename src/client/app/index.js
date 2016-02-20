@@ -31,7 +31,7 @@ angular.module("app", [
 		return store.get('jwt');
 	};
 	$httpProvider.interceptors.push('jwtInterceptor');
-}).run(function ($rootScope, $location, Utils, $uibModal, $state, store, jwtHelper) {
+}).run(function ($rootScope, $location, Utils, $uibModal, $state, store, jwtHelper, Auth) {
 	// $rootScope.$watch('usuario', function (currentUser) {
 	// 	if (!currentUser && (['/', '/login', '/logout', '/signup'].indexOf($location.path()) == -1)) {
 	// 		Auth.currentUser();
@@ -54,10 +54,11 @@ angular.module("app", [
 	});
 	$rootScope.$on('$stateChangeStart', function (event, next, current) {
 		if (['contacto', 'login'].indexOf(next.name) == -1) {
-			if (!store.get('jwt') || jwtHelper.isTokenExpired(store.get('jwt'))) {
-				event.preventDefault();
-				$state.go('login');
-			}
+			// if (!store.get('jwt') || jwtHelper.isTokenExpired(store.get('jwt'))) {
+				// event.preventDefault();
+				// $state.go('login');
+			Auth.currentUser();
+			// }
 		}
 	});
 	$rootScope.$on('event:auth-loginRequired', function () {
