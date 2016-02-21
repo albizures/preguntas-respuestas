@@ -3,7 +3,7 @@
 angular.module('app.states').controller('PassCtrl', function ($scope, Data, Utils, $uibModalInstance, administrador, usuario) {
 	$scope.administrador = administrador;
 
-	var ruta = administrador? 'userSetclave' : 'userUpdclave';
+	let ruta = administrador ? 'userSetclave' : 'userUpdclave';
 	$scope.cambiar = function () {
 		if ($scope.newPass != $scope.tempPass) {
 			return Data.toast({

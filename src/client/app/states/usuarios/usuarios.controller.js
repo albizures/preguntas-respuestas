@@ -95,12 +95,15 @@ angular.module('app.states').controller('UsuariosCtrl', function ($scope, Data, 
 		// TODO: error cuando se esta en la segunda pagina de la tabla y solo hay uno y ese es el que se elimina
 		Data.delete('usuario/' + id)
 			.then(function (results) {
-				for (let index in $scope.usuarios) {
-					if ($scope.usuarios[index].id == id) {
-						$scope.usuarios.splice(index, 1);
-						$scope.tableUsuarios.reload();
-						Data.toast(results);
-						break;
+				Data.toast(results);
+				if (results.code === 0) {
+					for (let index in $scope.usuarios) {
+						if ($scope.usuarios[index].id == id) {
+							$scope.usuarios.splice(index, 1);
+							$scope.tableUsuarios.reload();
+							Data.toast(results);
+							break;
+						}
 					}
 				}
 			});

@@ -1,23 +1,13 @@
 'use strict';
 angular.module('app.services').factory('Auth', function ($rootScope, Data, Utils,store, $state, jwtHelper) {
-	$rootScope.usuario = null;//$cookieStore.get('user') || null;
+	$rootScope.usuario = jwtHelper.decodeToken(store.get('jwt')) || null;
 	//$cookieStore.remove('user');
-
+	$rootScope.$watch('usuario', function (newVal) {
+		console.log(newVal);
+	});
 	function informacionUsuario(data) {
 		var temp = [];
-		$rootScope.usuario = {
-			nombre: data.name,
-			nombres: data.nombres,
-			apellidos: data.apellidos,
-			idRol: Number(data.idrol),
-			rol: data.rol,
-			idOrganizacion: data.idorganizacion,
-			organizacion: data.organizacion,
-			email: data.email
-		};
-		for (let index in data.opciones) {
-			data.opciones[index] = Utils.convertNumber(data.opciones[index]);
-		}
+		$rootScope.usuario = jwtHelper.decodeToken(store.get('jwt'));
 		for (let index in data.opciones) {
 			if (data.opciones[index].Titulo_padre === null) {
 				anidacion(data.opciones[index]);

@@ -1,0 +1,9 @@
+.modal-header
+	h3.modal-title Ingrese los datos
+.modal-body
+	.form-group
+		label(for="nombre") Nombre de Organizaci&oacute;n
+		input#nombre.form-control(ng-model="organizacion.nombre", type="text", placeholder="nombre", required="")
+.modal-footer
+	button.btn.btn2.btn-primary(ng-disabled="!organizacion.nombre", ng-click="ok()") Aceptar
+	button.btn.btn2.btn-warning(ng-click="cancel()") Cancelar

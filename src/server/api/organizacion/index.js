@@ -4,8 +4,11 @@ const express = require("express"),
 	controller = require('./organizacion.controller.js');
 
 router.post('/', controller.post);
+
 router.get('/', controller.getAll);
-router.put('/', controller.update);
 router.get('/:id', controller.getOne);
 
+router.put('/', controller.update);
+
+router.delete('/:id', controller.delete);
 module.exports = router;

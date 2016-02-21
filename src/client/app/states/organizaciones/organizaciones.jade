@@ -1,0 +1,17 @@
+div
+	br
+	section.form-inline
+		button.btn.btn2.btn-default.pull-right(ng-click="limpiar()") Limpiar filtro
+		button.btn.btn2.btn-primary.pull-right(type="button", ng-model="filtro", uib-btn-checkbox="")
+			span.glyphicon.glyphicon-filter
+		button.btn.btn2.btn-primary(ng-click="agregar()")
+			i.icon-white.icon-plus
+			|  Agregar Organizacion
+	br
+	table.table.table-striped(ng-table="tableOrganizacion", show-filter="filtro")
+		tr(ng-repeat="i in $data")
+			td(data-title="'Nombre'", sortable="'nombre'", filter="{ 'nombre': 'text' }")
+				span {{i.nombre}}
+			td(data-title="'Acciones'", width="125")
+				a.btn.btn-danger.btn-xs(ng-click="eliminar(i.id)")
+					span.glyphicon.glyphicon-remove
