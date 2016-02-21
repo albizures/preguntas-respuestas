@@ -1,9 +1,9 @@
 'use strict';
 angular.module('app').controller('NavbarCtrl', function ($scope, $location, $rootScope, Auth, $uibModal) {
 
-	$rootScope.$watch('opciones', function () {
-		//console.log($rootScope.opciones); // alert('cambio');
-	});
+	// $rootScope.$watch('opciones', function () {
+	// 	console.trace($rootScope.opciones); // alert('cambio');
+	// });
 	$scope.usuario = $rootScope.usuario;
 	$scope.logout = function () {
 		Auth.logout(function () {

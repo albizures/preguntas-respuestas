@@ -1,7 +1,7 @@
 'use strict';
 require('./index.styl');
 const angular = require("angular"),
-		moment = require("moment");
+	moment = require("moment");
 require('angular-file-upload');
 require('ng-toast');
 angular.module("app", [
@@ -24,7 +24,7 @@ angular.module("app", [
 	ngToastProvider.configure({
 		//verticalPosition: 'bottom',
 		//horizontalPosition: 'center',
-		animation : "slide",
+		animation: "slide",
 		maxNumber: 3
 	});
 	jwtInterceptorProvider.tokenGetter = function (store) {
@@ -55,8 +55,8 @@ angular.module("app", [
 	$rootScope.$on('$stateChangeStart', function (event, next, current) {
 		if (['contacto', 'login'].indexOf(next.name) == -1) {
 			// if (!store.get('jwt') || jwtHelper.isTokenExpired(store.get('jwt'))) {
-				// event.preventDefault();
-				// $state.go('login');
+			// event.preventDefault();
+			// $state.go('login');
 			Auth.currentUser();
 			// }
 		}
