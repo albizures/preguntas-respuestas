@@ -1,0 +1,28 @@
+div
+	.modal-header
+		h3.modal-title Ingrese los datos
+	.modal-body
+		form(novalidate="", name="formRol")
+			.form-group
+				label(for="nombre") Nombre de rol
+				input#nombre.form-control(ng-model="rol.nombre", name="nombre", type="text", placeholder="Nombre de rol", required="")
+			.form-group
+				label(for="permiso") Permisos 
+				.input-group
+					select#permiso.form-control(name="permiso", ng-options="opcion.nombre for opcion in opciones  | filter: {visible : true}", ng-model="permiso")
+					span.input-group-btn
+						button.btn.btn2.btn-primary(ng-disabled="permiso.id == undefined", ng-click="agregarOpcion(permiso)")
+							span.glyphicon.glyphicon-plus
+		div
+			ul.list-group
+				li.list-group-item(ng-if="opcionesRol.length > 0 ", ng-repeat="opcion in opcionesRol")
+					| {{opcion.opcion}}
+					button.btn.btn-danger.btn-xs(type="button", ng-click="eliminarOpcion(opcion.idopcion)")
+						span.glyphicon.glyphicon-remove
+				li.list-group-item(ng-if="newOpcionesRol.length > 0", ng-repeat="opcion in newOpcionesRol")
+					| {{opcion.opcion}}
+					button.btn.btn-danger.btn-xs(type="button", ng-click="eliminarOpcion(opcion.idopcion)")
+						span.glyphicon.glyphicon-remove
+	.modal-footer
+		button.btn.btn2.btn-primary(ng-disabled="!formRol.$valid", ng-click="ok()") Aceptar
+		button.btn.btn2.btn-warning(ng-click="cancel()") Cancelar

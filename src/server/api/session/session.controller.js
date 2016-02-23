@@ -1,6 +1,6 @@
 const model = require("./session.model.js"),
 			_ = require('lodash'),
-			config = require('../../config'),
+			config = require('../../config/environment'),
 			jwt = require('jsonwebtoken'),
 			passwordUtils = require("../../components/utils/password.js");
 

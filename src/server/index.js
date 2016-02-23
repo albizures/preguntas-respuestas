@@ -1,8 +1,8 @@
 const express = require('express'),
 			app = express(),
-			BUILD_PATH= require("./config").BUILD_PATH,
-			PORT = require("./config").PORT;
-			
+			BUILD_PATH= require("./config/environment").BUILD_PATH,
+			PORT = require("./config/environment").PORT;
+
 require("./config/express.js")(app);
 require("./router.js")(app);
 

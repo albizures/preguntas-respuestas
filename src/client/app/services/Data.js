@@ -9,10 +9,6 @@ angular.module('app.services').factory('Data', function ($http, ngToast, Utils) 
 		},
 		obj = {};
 	obj.toast = function (data) {
-		console.log({
-			className: types[data.code],
-			content: data.description
-		}, data);
 		ngToast.create({
 			className: types[data.code],
 			content: data.description

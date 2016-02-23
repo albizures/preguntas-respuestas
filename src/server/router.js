@@ -1,4 +1,4 @@
-const BUILD_PATH = require("./config").BUILD_PATH,
+const BUILD_PATH = require("./config/environment").BUILD_PATH,
 			path = require('path');
 
 function getIndex(req, res) {
@@ -13,6 +13,7 @@ module.exports = function (app) {
 	app.use('/api/organizacion/', require('./api/organizacion'));
 	app.use('/api/rol/', require('./api/rol'));
 	app.use('/api/opcion/', require('./api/opcion'));
+	app.use('/api/permiso/', require('./api/permiso'));
 	app.use('/api/*', function (req, res) {
 		res.status(404).end();
 	});

@@ -1,5 +1,4 @@
-const model = require("./opcion.model.js"),
-			passport = require('../../config/passport.js');
+const model = require("./permiso.model.js");
 
 module.exports.post = function (req, res) {
 
@@ -17,8 +16,3 @@ module.exports.getOne = function (req, res) {
 module.exports.update = function (req, res) {
 	res.json([]);
 };
-module.exports.getByRol = function (req, res) {
-	model.getByRol(req.params.id, function (result) {
-		res.json(result);
-	});
-}
