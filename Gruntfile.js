@@ -38,15 +38,15 @@ module.exports = function (grunt) {
 		},
 		injector: {
 			options : {
-				relative : true,
-				transform: function(filePath) {
-						return 'require(\'.' + filePath + '\');';
-				},
+				relative : true
 			},
 			directives: {
 				options: {
 					starttag: '// injector',
-					endtag: '// endinjector'
+					endtag: '// endinjector',
+					transform: function(filePath) {
+							return 'require(\'.' + filePath + '\');';
+					}
 				},
 				files: {
 					'src/client/app/directives/index.js': [
@@ -58,7 +58,10 @@ module.exports = function (grunt) {
 			states: {
 				options: {
 					starttag: '// injector',
-					endtag: '// endinjector'
+					endtag: '// endinjector',
+					transform: function(filePath) {
+							return 'angular.module(\'app.states\').config(require(\'.' + filePath + '\'));';
+					},
 				},
 				files: {
 					'src/client/app/states/index.js': [
@@ -70,7 +73,7 @@ module.exports = function (grunt) {
 			stylus: {
 				options: {
 					transform: function(filePath) {
-							return '@import \'.' + filePath + '\';';
+							return '@import \'' + filePath + '\';';
 					},
 					starttag: '// injector',
 					endtag: '// endinjector'
@@ -86,7 +89,10 @@ module.exports = function (grunt) {
 			services: {
 				options: {
 					starttag: '// injector',
-					endtag: '// endinjector'
+					endtag: '// endinjector',
+					transform: function(filePath) {
+							return 'require(\'.' + filePath + '\');';
+					}
 				},
 				files: {
 					'src/client/app/services/index.js': [

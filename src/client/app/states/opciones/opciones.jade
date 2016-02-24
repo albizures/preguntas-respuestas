@@ -1,0 +1,27 @@
+div
+	br
+	section.form-inline
+		button.btn.btn2.btn-default.pull-right(ng-click="limpiar()") Limpiar filtro
+		button.btn.btn2.btn-primary.pull-right(type="button", ng-model="filtro", btn-checkbox="")
+			span.glyphicon.glyphicon-filter
+		button.btn.btn2.btn-primary(ng-click="agregar()")
+			i.icon-white.icon-plus
+			|  Agregar opcion
+	br
+	table.table.table-striped(ng-table="tableOpciones", show-filter="filtro")
+		tr(ng-repeat="opcion in $data")
+			td(data-title="'Nombre'", sortable="'nombre'", filter="{ 'nombre': 'text' }")
+				span {{opcion.nombre}}
+			td(data-title="'Descripcion'", sortable="'descripcion'", width="330", filter="{ 'descripcion': 'text' }")
+				span {{opcion.descripcion}}
+			td(data-title="'Tipo'", sortable="'nombreTipo'", width="150", filter="{ 'nombreTipo': 'text' }")
+				span {{opcion.nombreTipo}}
+			td(data-title="'Orden'", sortable="'orden'", width="50", filter="{ 'orden': 'text' }")
+				span {{opcion.orden}}
+			td(data-title="'Padre'", sortable="'idPadre'", width="50", filter="{ 'idPadre': 'text' }")
+				span {{opcion.idPadre}}
+			td(data-title="'Acciones'", width="50")
+				a.btn.btn-primary.btn-xs(ng-click="editar(opcion.id); opcion.$edit = true")
+					span.glyphicon.glyphicon-pencil
+				a.btn.btn-danger.btn-xs(ng-click="eliminar(opcion.id,$index)")
+					span.glyphicon.glyphicon-remove

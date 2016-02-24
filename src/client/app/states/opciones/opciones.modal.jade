@@ -1,0 +1,26 @@
+div
+	.modal-header
+		h3.modal-title Ingrese los datos
+	.modal-body
+		form(novalidate="", name="formOpcion")
+			.form-group
+				label(for="nombre") Nombre
+				input#nombre.form-control(ng-model="opcion.nombre", type="text", placeholder="Nombre", required="")
+			.form-group
+				label(for="descripcion") Descripcion
+				input#descripcion.form-control(ng-model="opcion.descripcion", type="text", placeholder="Descripcion", required="")
+			.form-group
+				label(for="titulo") Titulo
+				input#titulo.form-control(ng-model="opcion.titulo", type="text", placeholder="Titulo", required="")
+			.form-group
+				label(for="tipo") Tipo
+				select#tipo.form-control(ng-options="item.id as item.nombreTipo for item in tipos", ng-model="opcion.idTipo", name="tipo", required="")
+			.form-group
+				label(for="padre") Padre
+				select#padre.form-control(ng-disabled="!padres", ng-options="item.id as item.nombre for item in padres", ng-model="opcion.idPadre", type="number", placeholder="Padre")
+			.form-group
+				label(for="orden") Orden
+				input#orden.form-control(ng-model="opcion.orden", type="text", placeholder="Orden", required="")
+	.modal-footer
+		button.btn.btn-primary(ng-disabled="!formOpcion.$valid", ng-click="ok()") Aceptar
+		button.btn.btn-warning(ng-click="cancel()") Cancelar

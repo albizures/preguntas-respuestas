@@ -15,8 +15,8 @@ angular.module("app", [
 	require('ng-table').name,
 	'angularFileUpload',
 	'ngToast',
-	require('./services'),
 	require('./states'),
+	require('./services'),
 	require('./directives')
 ]).config(function (jwtInterceptorProvider, $urlRouterProvider, $locationProvider, $httpProvider, ngToastProvider) {
 	$urlRouterProvider.otherwise('/');
