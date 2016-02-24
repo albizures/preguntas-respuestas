@@ -1,5 +1,5 @@
 'use strict';
-console.log(require('./usuarios.controller.js'));
+
 module.exports = function ($stateProvider) {
 	$stateProvider
 		.state('usuarios', {

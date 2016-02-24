@@ -1,6 +1,5 @@
 'use strict';
 
-console.log(require('./organizaciones.controller.js'));
 module.exports = function ($stateProvider) {
 	$stateProvider
 		.state('organizaciones', {

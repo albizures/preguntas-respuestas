@@ -1,6 +1,5 @@
 'use strict';
 
-console.log(require('./login.js'));
 module.exports = function ($stateProvider) {
 	$stateProvider
 		.state('login', {

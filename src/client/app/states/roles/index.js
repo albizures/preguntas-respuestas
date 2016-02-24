@@ -1,6 +1,5 @@
 'use strict';
 
-console.log(require('./roles.controller.js'));
 module.exports = function ($stateProvider) {
 	$stateProvider
 		.state('roles', {
