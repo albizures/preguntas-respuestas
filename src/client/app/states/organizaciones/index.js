@@ -4,6 +4,6 @@ angular.module('app.states').config(function ($stateProvider) {
 		.state('organizaciones', {
 			url: '/organizaciones',
 			template: require('./organizaciones.jade'),
-			controller:  'OrganizacionCtrl'
+			controller:  require('./organizaciones.controller.js')
 		});
 });

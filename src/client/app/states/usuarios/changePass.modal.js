@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('app.states').controller('PassCtrl', function ($scope, Data, Utils, $uibModalInstance, administrador, usuario) {
+module.exports = function ($scope, Data, Utils, $uibModalInstance, administrador, usuario) {
 	$scope.administrador = administrador;
 
 	let ruta = administrador ? 'userSetclave' : 'userUpdclave';
@@ -29,4 +29,4 @@ angular.module('app.states').controller('PassCtrl', function ($scope, Data, Util
 	$scope.cancel = function () {
 		$modalInstance.dismiss('cancel');
 	};
-});
+};

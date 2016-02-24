@@ -4,6 +4,6 @@ angular.module('app.states').config(function ($stateProvider) {
 		.state('roles', {
 			url: '/roles',
 			template: require('./roles.jade'),
-			controller:  'RolesCtrl'
+			controller: require('./roles.controller.js')
 		});
 });

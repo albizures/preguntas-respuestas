@@ -9,7 +9,7 @@ module.exports = function (grunt) {
 				event: ['added', 'deleted'],
 			},
 			states: {
-				files: ['src/client/app/states/**/**.js'],
+				files: ['src/client/app/states/**/index.js'],
 				tasks: ['injector:states']
 			},
 			directives: {
@@ -62,7 +62,7 @@ module.exports = function (grunt) {
 				},
 				files: {
 					'src/client/app/states/index.js': [
-						'src/client/app/states/**/**.js',
+						'src/client/app/states/**/index.js',
 						'!src/client/app/states/index.js'
 					]
 				}

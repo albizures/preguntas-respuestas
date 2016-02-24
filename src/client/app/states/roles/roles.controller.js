@@ -1,6 +1,7 @@
 'use strict';
-const templateModal = require('./roles.modal.jade')();
-angular.module('app.states').controller('RolesCtrl', function ($scope, Data, $rootScope, NgTableParams, $uibModal, Utils) {
+const templateModal = require('./roles.modal.jade')(),
+	CtrlRoles = require('./roles.modal.js');
+module.exports = function ($scope, Data, $rootScope, NgTableParams, $uibModal, Utils) {
 	$scope.filtro = false;
 	$scope.$watch('filtro', function (newValue, oldValue) {
 		if (newValue !== undefined && newValue !== oldValue) {
@@ -28,7 +29,7 @@ angular.module('app.states').controller('RolesCtrl', function ($scope, Data, $ro
 	$scope.editar = function (id) {
 		var modalroles = $uibModal.open({
 			template: templateModal,
-			controller: 'ModalRolesCtrl',
+			controller: CtrlRoles,
 			resolve: {
 				rol: function () {
 					return $scope.roles.filter(function (rol) {
@@ -55,7 +56,7 @@ angular.module('app.states').controller('RolesCtrl', function ($scope, Data, $ro
 	$scope.agregar = function () {
 		var modalroles = $uibModal.open({
 			template: templateModal,
-			controller: 'ModalRolesCtrl',
+			controller: CtrlOrganizaciones,
 			resolve: {
 				rol: function () {
 					return {};
@@ -99,4 +100,4 @@ angular.module('app.states').controller('RolesCtrl', function ($scope, Data, $ro
 				}
 			});
 	};
-});
+};

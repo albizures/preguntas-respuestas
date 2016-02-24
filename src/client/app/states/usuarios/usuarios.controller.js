@@ -1,6 +1,8 @@
 'use strict';
-const templateModal = require('./usuarios.modal.jade')();
-angular.module('app.states').controller('UsuariosCtrl', function ($scope, Data, $rootScope, NgTableParams, $uibModal, Utils) {
+const templateModal = require('./usuarios.modal.jade')(),
+	CtrlChangePass = require('./changePass.modal.js'),
+	CtrlUsuarios = require('./usuarios.modal.js');
+module.exports = function ($scope, Data, $rootScope, NgTableParams, $uibModal, Utils) {
 	$scope.filtro = false;
 	$scope.$watch('filtro', function (newValue, oldValue) {
 		if (newValue !== undefined && newValue !== oldValue) {
@@ -27,7 +29,7 @@ angular.module('app.states').controller('UsuariosCtrl', function ($scope, Data, 
 	$scope.cambiarPass = function (usuario) {
 		$uibModal.open({
 			templateUrl: require('./changePass.jade'),
-			controller: 'PassCtrl',
+			controller: CtrlChangePass,
 			size: 'sm',
 			resolve: {
 				administrador: function () {
@@ -42,7 +44,7 @@ angular.module('app.states').controller('UsuariosCtrl', function ($scope, Data, 
 	$scope.editar = function (id) {
 		var modalUsuarios = $uibModal.open({
 			template: templateModal,
-			controller: 'ModalUsuariosCtrl',
+			controller: CtrlUsuarios,
 			resolve: {
 				usuario: function () {
 					return $scope.usuarios.filter(function (usuario) {
@@ -69,7 +71,7 @@ angular.module('app.states').controller('UsuariosCtrl', function ($scope, Data, 
 	$scope.agregar = function () {
 		var modalOpciones = $uibModal.open({
 			template: templateModal,
-			controller: 'ModalUsuariosCtrl',
+			controller: CtrlUsuarios,
 			resolve: {
 				usuario: function () {
 					return {};
@@ -108,4 +110,4 @@ angular.module('app.states').controller('UsuariosCtrl', function ($scope, Data, 
 				}
 			});
 	};
-});
+};

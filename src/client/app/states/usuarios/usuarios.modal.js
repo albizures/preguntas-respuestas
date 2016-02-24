@@ -1,5 +1,5 @@
 'use strict';
-angular.module('app.states').controller('ModalUsuariosCtrl', function ($scope, $uibModalInstance, usuario, Data, Utils) {
+module.exports = function ($scope, $uibModalInstance, usuario, Data, Utils) {
 	$scope.roles = undefined;
 	$scope.contrasena = usuario.nombre == undefined;
 	console.log(usuario);
@@ -51,4 +51,4 @@ angular.module('app.states').controller('ModalUsuariosCtrl', function ($scope, $
 	$scope.cancel = function () {
 		$uibModalInstance.dismiss('cancel');
 	};
-});
+};

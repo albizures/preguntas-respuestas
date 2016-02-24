@@ -5,6 +5,6 @@ angular.module('app.states').config(function ($stateProvider) {
 		.state('login', {
 			url: '/login',
 			template: require('./login.jade')(),
-			controller: 'LoginCtrl'
+			controller: require('./login.js') // TODO: cambiarle el nombre al archivo del controller
 		});
 });
