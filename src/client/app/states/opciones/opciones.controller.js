@@ -11,15 +11,20 @@ module.exports = function ($scope, Data, $rootScope, NgTableParams, $filter, $ui
 
 		}
 	});
-	Data.get('opDatos')
+	Data.get('usuario')
 		.then(function (results) {
-			for (index in results) {
-
-				results[index] = utils.convertNumber(results[index]);
-			}
-			// console.log(results);
-			$scope.opciones = results;
-			for (index in $scope.opciones) {
+			$scope.usuarios = results.data;
+			$scope.tableUsuarios = new NgTableParams(Utils.tableParams('nombre', 'asc'), {
+				total: $scope.usuarios.length,
+				getData: function ($defer, params) {
+					Utils.filtro($scope.usuarios, $scope.filtro, params, $defer);
+				}
+			});
+		});
+	Data.get('opcion')
+		.then(function (results) {
+			$scope.opciones = results.data;
+			for (let index in $scope.opciones) {
 
 				$scope.opciones[index].tipo = {
 					codTipo: $scope.opciones[index].codTipo,
@@ -27,21 +32,11 @@ module.exports = function ($scope, Data, $rootScope, NgTableParams, $filter, $ui
 					nombreTipo: $scope.opciones[index].nombreTipo
 				};
 			}
-			$scope.tableOpciones = new NgTableParams({
-				page: 1,
-				count: 10,
-				sorting: {
-					nombre: 'asc'
-				}
-			}, {
+			$scope.tableOpciones = new NgTableParams(Utils.tableParams('nombre', 'asc'), {
 				total: $scope.opciones.length,
 				filterDelay: 350,
 				getData: function ($defer, params) {
-					var orderedData = params.sorting() ? $filter('orderBy')($scope.opciones, params.orderBy()) : $scope.opciones;
-					if ($scope.filtro) {
-						orderedData = params.filter() ? $filter('filter')(orderedData, params.filter()) : orderedData;
-					}
-					$defer.resolve(orderedData.slice((params.page() - 1) * params.count(), params.page() * params.count()));
+					Utils.filtro($scope.opciones, $scope.filtro, params, $defer);
 				}
 			});
 		});
