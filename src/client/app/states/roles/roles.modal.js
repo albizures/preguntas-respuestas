@@ -55,12 +55,12 @@ module.exports = function ($scope, $uibModalInstance, rol, Data, Utils) {
 			});
 			//agregar a newOpcionesRol
 		} else {
-			Data.post('perIn', {
-					opciones: [opcion],
-					idrol: $scope.rol.id
+			Data.post('rol/opcion', {
+					opcion: opcion.id,
+					rol: $scope.rol.id
 				})
 				.then(function (result) {
-					if (result.status == 'success') {
+					if (result.code == 0) {
 						$scope.opcionesRol.push({
 							opcion: opcion.nombre,
 							idopcion: opcion.id

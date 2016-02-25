@@ -56,7 +56,7 @@ module.exports = function ($scope, Data, $rootScope, NgTableParams, $uibModal, U
 	$scope.agregar = function () {
 		var modalroles = $uibModal.open({
 			template: templateModal,
-			controller: CtrlOrganizaciones,
+			controller: CtrlRoles,
 			resolve: {
 				rol: function () {
 					return {};
