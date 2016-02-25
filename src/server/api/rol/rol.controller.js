@@ -1,7 +1,14 @@
 'use strict';
-const model = require("./rol.model.js"),
-	modelOpcion = require('../opcion/opcion.model.js');
+const model = require("./rol.model.js");
 
+module.exports.postOpcion = function (req, res) {
+	let opciones = [
+		[req.body.rol, req.body.opcion]
+	];
+	model.insertIntoOpcion(opciones, function (result) {
+		res.json(result);
+	});
+}
 module.exports.post = function (req, res) {
 	let originalResult;
 	model.post(req.body.nombre, onQuery);
@@ -16,11 +23,11 @@ module.exports.post = function (req, res) {
 			}
 			console.log(opciones);
 			if (result.code == 0) {
-				modelOpcion.insertInto(opciones, onInsertInto);
+				modelOpcion.insertIntoOpcion(opciones, onInsertIntoOpcion);
 			}
 		}
 	}
-	function onInsertInto(result) {
+	function onInsertIntoOpcion(result) {
 		if (result.code == 0) {
 			res.json(originalResult);
 		} else {

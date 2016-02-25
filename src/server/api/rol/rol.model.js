@@ -19,6 +19,19 @@ module.exports.update = function (data, cb) {
 		}
 	});
 }
+module.exports.insertIntoOpcion = function (data, cb) {
+	const query = 'INSERT INTO seg_rol_opcion (idrol, idopcion) VALUES ?';
+	connection(query, [data], function (err, rows) {
+		let code = 0;
+		if (err) {
+			code = 1;
+			rows = [];
+		}
+		if (cb) {
+			cb(result(code, err, rows[0]));
+		}
+	});
+}
 module.exports.delete = function (id, cb) {
 	const query = 'call sp_del_seg_rol( ? )';
 	connection(query, id, function (err, rows) {

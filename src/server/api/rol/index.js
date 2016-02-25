@@ -4,7 +4,7 @@ const express = require("express"),
 	controller = require('./rol.controller.js');
 
 router.post('/', controller.post);
-
+router.post('/opcion', controller.postOpcion);
 router.get('/', controller.getAll);
 router.get('/:id', controller.getOne);
 
