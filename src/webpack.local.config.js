@@ -54,8 +54,7 @@ module.exports = {
 		{
 			test: /\.(png|jpg|jpeg|gif)$/,
 			loaders: [
-				'file?name=/assets/images/[name].[ext]',
-				'image-webpack?bypassOnDebug&optimizationLevel=7&interlaced=false'
+				'file?name=/assets/images/[name].[ext]'
 			]
 		},{
 			test: /\.mp3$/,
