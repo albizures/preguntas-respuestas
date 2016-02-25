@@ -57,6 +57,11 @@ module.exports = {
 				'file?name=/assets/images/[name].[ext]',
 				'image-webpack?bypassOnDebug&optimizationLevel=7&interlaced=false'
 			]
+		},{
+			test: /\.mp3$/,
+			loaders: [
+				'file?name=/assets/[name].[ext]'
+			]
 		}, {
 			test: /\.css?$/,
 			loaders: ExtractTextPlugin.extract('style-loader', 'css-loader')
