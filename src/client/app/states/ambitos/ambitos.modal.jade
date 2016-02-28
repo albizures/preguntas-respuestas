@@ -1,0 +1,12 @@
+.modal-header
+	h3.modal-title Ingrese los datos
+.modal-body
+	.form-group
+		label(for="ambito") Nombre del Ambito
+		input#nombre.form-control(ng-model="ambito.nombre", type="text", placeholder="nombre del ámbito", required="")
+	.form-group
+		label(for="ambito") Codigo
+		input#codigo.form-control(ng-disabled="disable", ng-model="ambito.codigo", type="text", placeholder="Literal", required="")
+.modal-footer
+	button.btn.btn2.btn-primary(ng-disabled="!ambito.nombre && !ambito.codigo", ng-click="ok()") Aceptar
+	button.btn.btn2.btn-warning(ng-click="cancel()") Cancelar

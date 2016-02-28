@@ -3,6 +3,7 @@
 module.exports = angular.module('app.states', []).name;
 
 // injector
+angular.module('app.states').config(require('./ambitos/index.js'));
 angular.module('app.states').config(require('./login/index.js'));
 angular.module('app.states').config(require('./main/index.js'));
 angular.module('app.states').config(require('./opciones/index.js'));

@@ -40,8 +40,8 @@ module.exports = function ($rootScope, $location, Utils, $uibModal, $state, stor
 			return console.error('msg undefined');
 		}
 		modal = $uibModal.open({
-			templateUrl: 'confirm.modal',
-			controller: 'ModalConfirmCtrl',
+			template: require('./confirm.modal.jade')(),
+			controller: require('./confirm.modal.js'),
 			backdrop: 'static',
 			size: 'sm',
 			resolve: {

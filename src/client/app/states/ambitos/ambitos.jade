@@ -1,0 +1,17 @@
+div
+	br
+	section.form-inline
+		button.btn.btn2.btn-default.pull-right(ng-click="limpiar()") Limpiar filtro
+		button.btn.btn2.btn-primary.pull-right(type="button", ng-model="filtro", uib-btn-checkbox="")
+			span.glyphicon.glyphicon-filter(ng-class="{}")
+		button.btn.btn2.btn-primary(ng-click="agregar()")
+			i.icon-white.icon-plus
+			| Agregar Ambito
+		br
+		table.table.table-striped(ng-table="tableAmbitos", show-filter="filtro")
+			tr.tr.animate-repeat(ng-repeat="i in $data")
+				td(data-title="'Nombre'", sortable="'nombre'", width="400", filter="{ 'nombre': 'text' }")
+					| {{i.nombre}}
+				td(data-title="''", width="40")
+					button.btn.btn-danger.btn-xs(type="button", ng-click="eliminar(i.id)")
+						span.glyphicon.glyphicon-remove

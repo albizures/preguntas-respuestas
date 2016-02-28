@@ -12,8 +12,8 @@ angular.module('app.services').factory('Data', function ($http, ngToast, Utils) 
 			0 : new Audio(require('../../assets/success.mp3'))
 		},
 		obj = {};
-		effects[0].volumen = 0.5;
-		effects[1].volumen = 0.5;
+	effects[0].volumen = 0.5;
+	effects[1].volumen = 0.5;
 	obj.toast = function (data) {
 		effects[data.code].play();
 		ngToast.create({

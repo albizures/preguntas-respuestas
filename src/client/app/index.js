@@ -36,12 +36,6 @@ angular.module("app", [
 		1: false,
 		2: 1
 	})
-	.run(require('./app.run.js'))
-	.controller('ModalConfirmCtrl', function ($scope, $modalInstance, msg) {
-		$scope.msg = msg;
-		$scope.ok = function (result) {
-			$modalInstance.close(result);
-		};
-	});
+	.run(require('./app.run.js'));
 
 require('./navbar.js');

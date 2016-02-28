@@ -1,7 +1,7 @@
 'use strict';
 const templateModal = require('./opciones.modal.jade')(),
-		CtrlOpciones = require('./opciones.modal.js');
-module.exports = function ($scope, Data, $rootScope, NgTableParams, $filter, $uibModal, Utils) {
+		ctrlModal = require('./opciones.modal.js');
+module.exports = function ($scope, Data, $rootScope, NgTableParams, $uibModal, Utils) {
 	$scope.filtro = false;
 	$scope.$watch('filtro', function (newValue, oldValue) {
 		if (newValue !== undefined && newValue !== oldValue) {
@@ -38,7 +38,7 @@ module.exports = function ($scope, Data, $rootScope, NgTableParams, $filter, $ui
 	$scope.editar = function (id) {
 		var modalOpciones = $uibModal.open({
 			template: templateModal,
-			controller: CtrlOpciones,
+			controller: ctrlModal,
 			resolve: {
 				opcion: function () {
 					return $scope.opciones.filter(function (opcion) {
@@ -65,7 +65,7 @@ module.exports = function ($scope, Data, $rootScope, NgTableParams, $filter, $ui
 	$scope.agregar = function () {
 		var modalOpciones = $uibModal.open({
 			template: templateModal,
-			controller: CtrlOpciones,
+			controller: ctrlModal,
 			resolve: {
 				opcion: function () {
 					return {};
