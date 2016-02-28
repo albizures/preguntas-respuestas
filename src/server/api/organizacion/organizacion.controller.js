@@ -1,5 +1,4 @@
-const model = require("./organizacion.model.js"),
-			passport = require('../../config/passport.js');
+const model = require("./organizacion.model.js");
 
 module.exports.post = function (req, res) {
 	model.post(req.body.nombre, function (result) {

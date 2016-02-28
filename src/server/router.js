@@ -14,6 +14,7 @@ module.exports = function (app) {
 	app.use('/api/rol/', require('./api/rol'));
 	app.use('/api/opcion/', require('./api/opcion'));
 	app.use('/api/permiso/', require('./api/permiso'));
+	app.use('/api/evento/', require('./api/evento'));
 	app.use('/api/*', function (req, res) {
 		res.status(404).end();
 	});

@@ -1,6 +1,5 @@
 const express = require("express"),
 	router = express.Router(),
-	passport = require('../../config/passport.js'),
 	controller = require('./organizacion.controller.js');
 
 router.post('/', controller.post);

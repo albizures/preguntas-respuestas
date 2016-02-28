@@ -1,0 +1,20 @@
+div
+	br
+	button.btn.btn2.btn-warning.pull-right(an-back="") Regresar
+	br
+	table.table.table-striped(ng-table="tableLicitaciones", show-filter="filtro")
+		tr(ng-repeat="l in $data")
+			td(data-title="'Nombre'", sortable="'nombre'", width="200", filter="{ 'nombre': 'text' }")
+				span {{l.nombre}}
+			td(data-title="'Descripcion'", sortable="'descripcion'", width="330", filter="{ 'descripcion': 'text' }")
+				span {{l.descripcion}}
+			td(data-title="'Ambito'", sortable="'ambito'", width="80", filter="{ 'ambito': 'text' }")
+				span {{l.ambito }}
+			td(data-title="'Fecha inicio'", sortable="'fecha_inicio'", width="100", filter="{ 'fecha_inicio': 'text' }")
+				span {{l.fecha_inicio | date:&apos;dd/MM/yyyy&apos;}}
+			td(data-title="'Fecha final'", sortable="'fecha_final'", width="100", filter="{ 'fecha_final': 'text' }")
+				span {{l.fecha_final | date:&apos;dd/MM/yyyy&apos;}}
+			td(data-title="'Acciones'", width="100")
+				button.btn.btn-primary.btn-xs(ng-click="documentos(l)")
+					span.glyphicon.glyphicon-file
+				a.btn.btn-primary.btn-xs(ui-sref="preguntasConsultor({evento : l.id, ambito : l.id_ambito})") Preguntas
