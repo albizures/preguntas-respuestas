@@ -45,6 +45,7 @@ module.exports = function (grunt) {
 					starttag: '// injector',
 					endtag: '// endinjector',
 					transform: function(filePath) {
+						return 'angular.module(\'app.directives\').directive(require(\'.' + filePath + '\').name, require(\'.' + filePath + '\'));'
 							return 'require(\'.' + filePath + '\');';
 					}
 				},
