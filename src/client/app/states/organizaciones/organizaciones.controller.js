@@ -1,6 +1,6 @@
 'use strict';
 const templateModal = require('./organizaciones.modal.jade')(),
-	CtrlOrganizaciones = require('./organizaciones.modal.js');
+	ctrlModal = require('./organizaciones.modal.js');
 module.exports = function ($scope, Data, $rootScope, NgTableParams, $uibModal, Utils) {
 	$scope.filtro = false;
 	$scope.$watch('filtro', function (newValue, oldValue) {
@@ -30,7 +30,7 @@ module.exports = function ($scope, Data, $rootScope, NgTableParams, $uibModal, U
 	$scope.editar = function (id) {
 		var modalorganizacion = $uibModal.open({
 			template: templateModal,
-			controller: CtrlOrganizaciones,
+			controller: ctrlModal,
 			resolve: {
 				rol: function () {
 					return $scope.roles.filter(function (organizacion) {
@@ -59,7 +59,7 @@ module.exports = function ($scope, Data, $rootScope, NgTableParams, $uibModal, U
 	$scope.agregar = function () {
 		var modalorganizacion = $uibModal.open({
 			template: templateModal,
-			controller: CtrlOrganizaciones,
+			controller: ctrlModal,
 			backdrop: 'static',
 			resolve: {
 				organizacion: function () {
