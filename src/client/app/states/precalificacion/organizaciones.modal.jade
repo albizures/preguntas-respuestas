@@ -1,0 +1,17 @@
+.modal-header
+	h3.modal-title Ingrese las Organizaciones para {{licitacion.nombre}}
+.modal-body
+	form.input-group(ng-submit="agregar()", novalidate="")
+		// -select.form-control(ng-model="organizacion", ng-options="idx as u.nombre for (idx,u) in organizaciones")
+		select.form-control(ng-model="organizacion", ng-options="item.nombre for item in organizaciones")
+		span.input-group-btn
+			button.btn.btn-default(type="submit")
+				span.glyphicon.glyphicon-plus
+	| {{organizacion}}
+	br
+	span(ng-if="newOrganizaciones.length !== 0") Organizaciones agregadas recientemente
+	ul.list-group
+		li.list-group-item(ng-repeat="p in newOrganizaciones")
+			| {{p.nombre}}
+.modal-footer
+	button.btn.btn2.btn-warning(ng-click="ok()") Salir

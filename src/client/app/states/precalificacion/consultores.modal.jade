@@ -1,0 +1,25 @@
+.modal-header
+	h3.modal-title Ingrese las consultores para {{licitacion.nombre}}
+.modal-body
+	form(name="agregarForm", ng-submit="agregarForm.$valid && agregar()", novalidate="")
+		.form-group
+			label(for="") Consultor
+			select.form-control(ng-model="consultor.idConsultor", ng-options="u.id as u.nombre for u in consultores", required="")
+		.form-group
+			label(for="") Ambitos
+			select.form-control(ng-model="consultor.idAmbito", ng-options="u.id as u.nombre for u in ambitos", required="")
+		.form-group
+			.checkbox
+				label
+					input(ng-init="consultor.Secretario = 'N'", ng-disabled="secretario", ng-model="consultor.Secretario", type="checkbox", ng-true-value="'S'", ng-false-value="'N'")
+					|  Secretario
+		.form-group
+			button.btn.btn-default(type="submit")
+				span.glyphicon.glyphicon-plus
+	br
+	span(ng-if="newConsultores.length !== 0") Consultores agregados recientemente
+	ul.list-group
+		li.list-group-item(ng-repeat="p in newConsultores")
+			| {{p.nombre}}
+.modal-footer
+	button.btn.btn2.btn-warning(ng-click="ok()") Salir

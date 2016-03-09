@@ -1,0 +1,42 @@
+.row.precalificaciones
+	.col-md-6
+		.col-lg-6
+			h3 Licitaciones
+		br
+		table.table.table-striped(ng-table="tableLicitaciones", show-filter="filtro")
+			tr(ng-repeat="l in $data", ng-click="selLicitacion(l)", ng-class="{info : licitacionSel == l}")
+				td(data-title="'Nombre'", sortable="'nombre'", width="400", filter="{ 'nombre': 'text' }")
+					span {{l.nombre}}
+	.col-md-6
+		.col-md-12
+			select.form-control(ng-model="tipoPrecalificado", name="tipoPrecalificado", id="")
+				option(default="", value="1") Precalificados
+				option(value="2") Consultores
+		br
+		br
+		div(ng-if="tipoPrecalificado == 1")
+			button.btn.btn2.btn-primary.pull-right(ng-click="agregarOrganizacion()")
+				span.glyphicon.glyphicon-plus
+			table.table.table-striped(ng-table="tablePrecalificados", show-filter="filtro2")
+				tr(ng-repeat="p in $data")
+					td(data-title="'Nombres'", sortable="'nombres'", filter="{ 'nombres': 'text' }")
+						span {{p.nombres}}
+					td(data-title="'Apellidos'", sortable="'apellidos'", filter="{ 'apellidos': 'text' }")
+						span {{p.apellidos}}
+					td(data-title="''", width="40")
+						button.btn.btn-danger.btn-xs(type="button", ng-click="eliminar(p,'precalificado')")
+							span.glyphicon.glyphicon-remove
+		div(ng-if="tipoPrecalificado == 2")
+			button.btn.btn2.btn-primary.pull-right(ng-click="agregarConsultores()")
+				span.glyphicon.glyphicon-plus
+			table.table.table-striped(ng-table="tableConsultores", show-filter="filtro3")
+				tr(ng-repeat="p in $data")
+					td(data-title="'Nombre'", sortable="'nombre'", filter="{ 'nombre': 'text' }")
+						span {{p.nombre}}
+					td(data-title="'Ambito'", sortable="'ambito'", filter="{ 'ambito': 'text' }")
+						span {{p.ambito}}
+					td(data-title="'Secretario'", sortable="'secretario'", filter="{ 'secretario': 'text' }")
+						span {{p.secretario}}
+					td(data-title="''", width="40")
+						button.btn.btn-danger.btn-xs(type="button", ng-click="eliminar(p,'consultor')")
+							span.glyphicon.glyphicon-remove
