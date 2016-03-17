@@ -8,6 +8,8 @@ router.post('/consultor', controller.postConsultor);
 router.post('/organizacion', controller.postOrganizacion);
 
 router.get('/', controller.getAll);
+router.get('/auth/usuario', controller.getAuthUsuario);
+router.get('/:id/file/html', controller.getFilesHtml);
 router.get('/:id/consultores', controller.getConsultores);
 router.get('/:id/secretario/:ambito', controller.getSecretarioByAmbito);
 router.get('/:id/precalificados', controller.getPrecalificados);
