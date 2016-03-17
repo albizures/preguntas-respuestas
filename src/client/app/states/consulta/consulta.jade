@@ -1,0 +1,24 @@
+.row
+	.col-md-6
+		.col-lg-6
+			h3 Licitaciones
+		br
+		table.table.table-striped(ng-table="tableLicitaciones", show-filter="filtro")
+			tr(ng-repeat="l in $data", ng-click="selLicitacion(l)", ng-class="{info : licitacionSel == l}")
+				td(data-title="'Nombre'", sortable="'nombre'", width="400", filter="{ 'nombre': 'text' }")
+					span {{l.nombre}}
+				td(width="50")
+					a.btn.btn-primary.btn-xs(ui-sref="preguntas2({id : l.id_proyecto_licitacion})") Preguntas
+	.col-md-6
+		.col-lg-6
+			h3 Documentos
+		br
+		table.table.table-striped(ng-table="tableDocumentos", show-filter="filtro")
+			tr(ng-repeat="l in $data")
+				td(data-title="'Nombre'", sortable="'nombre'", width="400", filter="{ 'nombre': 'text' }")
+					span {{l.nombre_doc}}
+				td(width="50")
+					button.btn.btn-default.btn-xs(ng-click="ver(l)")
+						span.glyphicon.glyphicon-eye-open
+					button.btn.btn-default.btn-xs(ng-click="descargar(l.ubicacion)")
+						span.glyphicon.glyphicon-file
