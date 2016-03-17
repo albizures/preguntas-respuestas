@@ -1,0 +1,36 @@
+div
+	.modal-header
+		h3.modal-title Seleccione los archivos
+	.modal-body
+		div(ng-if="cargar")
+			.col-lg-10
+				input.form-control(type="text", ng-model="$parent.nombre", placeholder="Nombre")
+				br
+			.col-lg-5
+				label.btn.btn2.btn-default.col-lg-12.truncate(for="pdf")
+					span(ng-if="!validPdf()") {{getPdf().file.name}}
+					span(ng-if="validPdf()") PDF
+			.col-lg-5
+				label.btn.btn2.btn-default.col-lg-12.truncate(for="html")
+					span(ng-if="!validZip()") {{getZip().file.name}}
+					span(ng-if="validZip()") HTML
+			input#pdf(ng-if="validPdf()", nv-file-select="", uploader="uploader", type="file", accept="application/pdf", ng-show="false")
+			input#html(ng-if="validZip()", nv-file-select="", uploader="uploader", type="file", accept="application/zip", ng-show="false")
+			button.btn.btn2.btn-success.col-lg-2(ng-disabled="uploader.queue.length < 2 || !nombre", ng-click="uploader.uploadAll()")
+				span(ng-if="!uploading")
+					span.glyphicon.glyphicon-floppy-disk
+				span.glyphicon.glyphicon-refresh.load.active(ng-if="uploading")
+			div(style="clear: both")
+		br
+		ul.list-group.col-lg-12
+			li.list-group-item(ng-repeat="d in documentos | filter : validarPdf ")
+				| {{d.nombre_doc}}
+				button.btn.btn-default.pull-right.btn-xs(ng-click="procesarHtml(d)")
+					| procesar
+				button.btn.btn-default.pull-right.btn-xs(ng-click="openVisor(d.ubicacion)")
+					span.glyphicon.glyphicon-eye-open
+		div(style="clear: both")
+		br
+	.modal-footer
+		button.btn.btn2.btn-warning(ng-click="ok()") Salir
+div(style="display: none;", ng-process-html="addHandlerProcess")
