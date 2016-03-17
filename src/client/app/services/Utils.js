@@ -31,7 +31,6 @@ angular.module('app.services').factory("Utils", function ($filter) {
 		},
 		filtro : function (data, filtros, params, done) {
 			var orderedData = params.sorting() ? $filter('orderBy')(data, params.orderBy()) : data;
-			console.log('getdata');
 			if (filtros) {
 				orderedData = params.filter() ? $filter('filter')(orderedData, params.filter()) : orderedData;
 			}

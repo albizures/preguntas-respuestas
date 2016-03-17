@@ -15,7 +15,9 @@ angular.module('app.services').factory('Data', function ($http, ngToast, Utils) 
 	effects[0].volumen = 0.5;
 	effects[1].volumen = 0.5;
 	obj.toast = function (data) {
-		effects[data.code].play();
+		if (effects[data.code]) {
+			effects[data.code].play();
+		}
 		ngToast.create({
 			className: types[data.code],
 			content: data.description
