@@ -1,0 +1,5 @@
+.col-sm-12
+	#archivo.col-sm-8.visor(ng-class="estado.comentando? '' : 'col-sm-offset-2'", ng-include="documento.ubicacionTemp", onload="termino()")
+	.coment-box.col-sm-4(ng-if="estado.comentando", an-coment-box="estado.id", actualizar="actualizar", documento="documento.id", offset="estado.offset", enviar="enviar", pregunta="estado.pregunta", ambitos="estado.ambitos")
+	.load-doc.col-sm-12(ng-if="estado.cargando")
+		span.glyphicon.glyphicon-refresh.load.active
