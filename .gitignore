@@ -2,6 +2,7 @@ build/app.js
 build/style.css
 build/assets
 dist
+uploads
 
 # Logs
 logs
