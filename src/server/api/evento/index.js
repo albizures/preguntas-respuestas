@@ -9,6 +9,7 @@ router.post('/organizacion', controller.postOrganizacion);
 
 router.get('/', controller.getAll);
 router.get('/auth/usuario', controller.getAuthUsuario);
+router.get('/file/html/:id', controller.getFileHtml);
 router.get('/:id/file/html', controller.getFilesHtml);
 router.get('/:id/consultores', controller.getConsultores);
 router.get('/:id/secretario/:ambito', controller.getSecretarioByAmbito);

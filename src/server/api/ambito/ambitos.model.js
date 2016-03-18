@@ -17,7 +17,7 @@ module.exports.post = function (data, cb) {
 			cb(result(code, err, rows[0]));
 		}
 	});
-}
+};
 
 module.exports.getAll = function (cb) {
 	var query = "call sp_sel_cat_ambito( )";

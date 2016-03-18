@@ -1,4 +1,5 @@
 'use strict';
+window.$ = window.jQuery = require("jquery");
 require('./index.styl');
 const angular = require("angular"),
 	moment = require("moment");

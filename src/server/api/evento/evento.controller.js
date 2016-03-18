@@ -1,11 +1,17 @@
 'use strict';
 const model = require("./evento.model.js");
 
+module.exports.getFileHtml = function (req, res) {
+	model.getFileHtml(req.params.id, function (result) {
+		res.json(result);
+	});
+};
+
 module.exports.getFilesHtml = function (req, res) {
 	model.getFilesHtml(req.params.id, function (result) {
 		res.json(result);
 	});
-}
+};
 
 module.exports.getAuthUsuario = function (req, res) {
 	model.getAuthUsuario(req.user.id, function (result) {

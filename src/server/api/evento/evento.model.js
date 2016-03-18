@@ -2,6 +2,23 @@
 const connection = require("../../components/connection.js"),
 	result = require('../../components/utils/result.js');
 
+module.exports.getFileHtml = function (id, cb) {
+	const query = 'call sp_sel_pyr_evento_doc_detID( ? )';
+	connection(query, id, function (err, rows) {
+		let code = 0;
+		if (err) {
+			code = 1;
+			rows = [];
+			err = 'Ocurrio un error, intentelo de nuevo';
+		} else {
+			rows = rows[0];
+		}
+		if (cb) {
+			cb(result(code, err, rows[0]));
+		}
+	});
+};
+
 module.exports.getFilesHtml = function (id, cb) {
 	const query = 'call sp_sel_pyr_evento_doc_detHTML( ? )';
 	connection(query, id, function (err, rows) {
