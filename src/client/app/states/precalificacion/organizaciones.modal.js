@@ -13,7 +13,7 @@ module.exports = function ($scope, $uibModalInstance, Data, Utils, licitacion) {
 					$scope.organizaciones = $scope.organizaciones.filter(function (item) {
 						return item.id !== $scope.organizacion.id;
 					}); //.splice(index, 1);
-					$scope.organizacion.id =  result.data;
+					$scope.organizacion.id =	result.data;
 					$scope.newOrganizaciones.push($scope.organizacion);
 					$scope.organizacion = $scope.organizaciones[0];
 				}

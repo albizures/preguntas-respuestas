@@ -103,7 +103,7 @@ module.exports = function ($scope, $uibModalInstance, rol, Data, Utils) {
 				}
 			}
 			/*for(i3 in $scope.newOpcionesRol){
-								 if($scope.opciones[i1].id ==  $scope.newOpcionesRol[i3].idopcion){
+								 if($scope.opciones[i1].id ==	$scope.newOpcionesRol[i3].idopcion){
 										 $scope.opciones[i1].visible = false;
 								 }
 						 }*/

@@ -47,7 +47,7 @@ module.exports = function ($scope, Data, Utils, $uibModal, $rootScope, NgTablePa
 					'codigo': ambito.codigo
 				})
 				.then(function (results) {
-					if (results.code ==  0) {
+					if (results.code ==	0) {
 						ambito.id = results.data.id;
 						$scope.ambitos.push(ambito);
 						table();

@@ -66,20 +66,20 @@ module.exports = function anComentBox(Data, Utils) {
 				});
 			}
 			//$scope.enviar = function () {
-			//    var ruta =  $scope.documento.idO !== ''? 'preguntaAdicionalIn' : 'preguntaPrimeraIn';
-			//    var data = {
-			//        clave : 'P-' + Date.now(),
-			//        tipo : $scope.documento.tipo,
-			//        idEvento : $scope.documento.id_evento,
-			//        idDoc : $scope.documento.id,
-			//        pregunta : $scope.comentario
+			//		var ruta =	$scope.documento.idO !== ''? 'preguntaAdicionalIn' : 'preguntaPrimeraIn';
+			//		var data = {
+			//				clave : 'P-' + Date.now(),
+			//				tipo : $scope.documento.tipo,
+			//				idEvento : $scope.documento.id_evento,
+			//				idDoc : $scope.documento.id,
+			//				pregunta : $scope.comentario
 			//
-			//    };
-			//    console.log(ruta,data);
-			//    //Data.post('preguntaPrimeraIn')
-			//    //    .then(function (result) {
-			//    //
-			//    //    });
+			//		};
+			//		console.log(ruta,data);
+			//		//Data.post('preguntaPrimeraIn')
+			//		//		.then(function (result) {
+			//		//
+			//		//		});
 			//};
 		}
 	};

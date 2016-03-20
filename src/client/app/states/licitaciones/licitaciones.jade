@@ -6,7 +6,7 @@ div
 			span.glyphicon.glyphicon-filter
 		button.btn.btn2.btn-primary(ng-click="agregar()")
 			i.icon-white.icon-plus
-			|  Agregar lictacion
+			|	Agregar lictacion
 	br
 	table.table.table-striped(ng-table="tableLicitaciones", show-filter="filtro")
 		tr(ng-repeat="l in $data")
@@ -19,7 +19,7 @@ div
 			td(data-title="'Fecha final'", sortable="'fecha_final'", width="100", filter="{ 'fecha_final': 'text' }")
 				span {{l.fecha_final | date:&apos;dd/MM/yyyy&apos;}}
 			td(data-title="'Acciones'", width="100")
-				// <button ng-click="ver(p)"  class="btn btn-default btn-xs">Ver</button>
+				// <button ng-click="ver(p)"	class="btn btn-default btn-xs">Ver</button>
 				button.btn.btn-primary.btn-xs(ng-click="documentos(l)")
 					span.glyphicon.glyphicon-file
 				a.btn.btn-primary.btn-xs(ui-sref="preguntas({id : l.id})") Preguntas

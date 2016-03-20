@@ -9,7 +9,7 @@ div
 			.form-group
 				label(for="permiso") Permisos 
 				.input-group
-					select#permiso.form-control(name="permiso", ng-options="opcion.nombre for opcion in opciones  | filter: {visible : true}", ng-model="permiso")
+					select#permiso.form-control(name="permiso", ng-options="opcion.nombre for opcion in opciones	| filter: {visible : true}", ng-model="permiso")
 					span.input-group-btn
 						button.btn.btn2.btn-primary(ng-disabled="permiso.id == undefined", ng-click="agregarOpcion(permiso)")
 							span.glyphicon.glyphicon-plus

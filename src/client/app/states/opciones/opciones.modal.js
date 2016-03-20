@@ -24,7 +24,7 @@ module.exports = function ($scope, $uibModalInstance, opcion, Data, tipoMenu, Ut
 	}
 	console.log(opcion);
 	/*$scope.tipos = [
-	    {id : 1,nombreTipo : 'Menu'}
+			{id : 1,nombreTipo : 'Menu'}
 	];*/
 	$scope.ok = function () {
 		if ($scope.opcion.nombreTipo == undefined) {
