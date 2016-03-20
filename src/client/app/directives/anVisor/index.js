@@ -82,7 +82,7 @@ module.exports = function anVisor(Data, FileUploader) {
 			});
 			$scope.enviar = function () {
 				let nuevo = $scope.estado.id == '',
-					ruta = nuevo ? 'preguntaPrimeraIn' : 'preguntaAdicionalIn',
+					ruta = nuevo ? 'preguntaPrimeraIn' : 'pregunta',
 					ambitos = angular.copy($scope.estado.ambitos);
 				for (let a = 0; a < ambitos.length; a++) {
 					if (!hasVal(ambitos[a]) || ambitos[a] === false) {
@@ -94,23 +94,17 @@ module.exports = function anVisor(Data, FileUploader) {
 				let data = {
 					clave: nuevo ? $scope.estado.tipo + '-' + Date.now() : $scope.estado.id,
 					tipo: $scope.estado.tipo,
-					idEvento: Number($scope.documento.id_evento),
-					idDoc: Number($scope.documento.id),
+					idEvento: $scope.documento.id_evento,
+					idDoc: $scope.documento.id,
 					pregunta: $scope.estado.pregunta,
 					ambitos: ambitos,
 					parrafo: $scope.estado.objeto.textContent
 				};
-				Data.post(ruta, {
-						pregunta: data
-					})
-					.then(function (result) {
+				Data.post(ruta, data).then(function (result) {
 						Data.toast(result);
-						if (result.status == 'success') {
-							$scope.changeId(data.clave);
+						if (result.code == 0) {
 							if (nuevo) {
 								console.log('unevo');
-								//$scope.updFile();
-
 							} else {
 								$scope.$broadcast('actualizarComentario');
 							}

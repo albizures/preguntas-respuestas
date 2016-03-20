@@ -13,14 +13,14 @@ module.exports = function (app) {
 	}));
 	app.use(express.static(BUILD_PATH));
 	app.use(favicon('src/favicon.ico'));
-	app.use('/api/', jwt({
+	app.use(/*'/api/',*/ jwt({
 		secret: secret,
 		fail: function (req, res, next) {
 			if (!req.headers.authorization) res.send(400, 'missing authorization header');
 			res.send(401);
 		}
 	}).unless({
-		method: 'POST',
+		//method: 'POST',
 		path: ['/api/session/']
 	}));
 	app.use(function (err, req, res, next) {return next();});
