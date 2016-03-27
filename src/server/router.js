@@ -19,6 +19,7 @@ module.exports = function (app) {
 	app.use('/api/permiso/', require('./api/permiso'));
 	app.use('/api/evento/', require('./api/evento'));
 	app.use('/api/pregunta/', require('./api/pregunta'));
+	app.use('/api/sector/', require('./api/sector'));
 	app.use('/api/*', function (req, res) {
 		res.status(404).end();
 	});
