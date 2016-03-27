@@ -1,6 +1,12 @@
 'use strict';
 const model = require("./pregunta.model.js");
 
+module.exports.getByEvento = function (req, res) {
+	model.getByEvento(req.params.id, function (result) {
+		res.json(result);
+	});
+};
+
 module.exports.post = function (req, res) {
 	let originalResult,
 		data = [
