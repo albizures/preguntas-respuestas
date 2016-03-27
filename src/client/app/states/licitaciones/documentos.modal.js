@@ -69,7 +69,9 @@ module.exports = function ($scope, $uibModalInstance, Data, Utils, FileUploader,
 		}
 		return documento.ubicacion.indexOf('pdf') != -1;
 	};
-
+	$scope.addHandlerProcess = function (fn) {
+		$scope.procesarHtml = fn;
+	};
 	$scope.uploader.onBeforeUploadItem = function (item) {
 		tnombre = $scope.nombre + ' - ' + (item.file.type == "application/pdf" ? 'PDF' : 'HTML');
 		item.formData.push({
