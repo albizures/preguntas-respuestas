@@ -1,4 +1,5 @@
 'use strict';
+const moment = require("moment");
 module.exports = angular.module('app.services', [])
 	.filter('capitalize', function () {
 		return function (input, scope) {
