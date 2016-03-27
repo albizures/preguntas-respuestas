@@ -2,6 +2,22 @@
 const connection = require("../../components/connection.js"),
 		result = require('../../components/utils/result.js');
 
+
+module.exports.getByEventoPrecalificado = function (data, cb) {
+	const query = 'call sp_sel_pyr_pregunta_evento_prec( ?, ? )';
+	connection(query, data, function (err, rows) {
+		let code = 0;
+		if (err) {
+			code = 1;
+			rows = [];
+			err = 'Ocurrio un error, intentelo de nuevo';
+		}
+		if (cb) {
+			cb(result(code, err, rows[0]));
+		}
+	});
+}
+
 module.exports.getByEvento = function (id, cb) {
 	const query = 'call sp_sel_pyr_pregunta_evento( ? )';
 	connection(query, id, function (err, rows) {

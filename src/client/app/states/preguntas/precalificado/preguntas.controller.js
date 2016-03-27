@@ -1,7 +1,8 @@
 'use strict';
 const moment = require("moment");
+
 module.exports = function ($scope, Data, Utils, NgTableParams, $stateParams) {
-	Data.get('pregunta/evento/' + $stateParams.id).then(function (result) {
+	Data.get('pregunta/evento/' + $stateParams.id + '/precalificado').then(function (result) {
 		if (result.code != 0) {
 			Data.toast(result);
 			return;
@@ -58,4 +59,4 @@ module.exports = function ($scope, Data, Utils, NgTableParams, $stateParams) {
 		}
 		return color;
 	};
-};
+}

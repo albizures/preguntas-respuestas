@@ -1,0 +1,20 @@
+div
+	br
+	section.form-inline
+		br
+		table.table.table-striped(ng-table="tablePreguntas", show-filter="filtro")
+			tr.tr.animate-repeat.preguntas(ng-repeat="i in $data", ng-class="getColor(i.fecha_crea,i.estado)")
+				td(data-title="'Pregunta'", sortable="'pregunta'", width="600", filter="{ 'pregunta': 'text' }")
+					| {{i.pregunta}}
+				td(data-title="'fecha'", sortable="'fecha_crea'", width="300", filter="{ 'fecha_crea': 'text' }")
+					| {{i.fecha_crea | moment: 'DD/MM/YYYY h:mma'}}
+				td(data-title="'Estado'", sortable="'est'", width="300", filter="{ 'est': 'text' }")
+					| {{i.est}}
+				td(data-title="''", width="80")
+					//
+						Este debiera aparecer solo cuando la respuesta esta en estado RESPONDIDA (L.A.) 17/12/2015
+						<button type="button"  class="btn btn-primary btn-xs" ng-click="pdfRespuesta(i.id)">
+						<span class="glyphicon glyphicon-file"></span>
+						</button>
+					button.btn.btn-primary.btn-xs(type="button", ng-click="irPregunta(i.id_doc_det,i.id_objeto)")
+						span.glyphicon.glyphicon-eye-open

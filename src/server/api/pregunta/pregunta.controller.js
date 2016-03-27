@@ -1,6 +1,16 @@
 'use strict';
 const model = require("./pregunta.model.js");
 
+module.exports.getByEventoPrecalificado = function (req, res) {
+	let data = [
+		req.params.id,
+		req.user.id
+	];
+	model.getByEventoPrecalificado(data, function (result) {
+		res.json(result);
+	});
+};
+
 module.exports.getByEvento = function (req, res) {
 	model.getByEvento(req.params.id, function (result) {
 		res.json(result);
