@@ -59,4 +59,4 @@ module.exports = function ($scope, Data, Utils, NgTableParams, $stateParams) {
 		}
 		return color;
 	};
-}
+};
