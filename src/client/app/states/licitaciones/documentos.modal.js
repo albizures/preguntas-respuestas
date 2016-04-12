@@ -1,8 +1,8 @@
 'use strict';
 
-module.exports = function ($scope, $uibModalInstance, Data, Utils, FileUploader, licitacion, cargar) {
-
-	var zip = ['application/zip', 'application/x-zip', 'application/x-zip-compressed', 'application/octet-stream', 'multipart/x-zip'],
+module.exports = function ($scope, $uibModalInstance, Data, Utils, FileUploader, licitacion, cargar, store) {
+	var idDoc = '',
+		zip = ['application/zip', 'application/x-zip', 'application/x-zip-compressed', 'application/octet-stream', 'multipart/x-zip'],
 		tnombre = "";
 
 	$scope.cargar = cargar;
@@ -11,18 +11,21 @@ module.exports = function ($scope, $uibModalInstance, Data, Utils, FileUploader,
 	$scope.create = true;
 
 	function traerDocumentos() {
-		Data.get('evento/files/' + licitacion.id)
-			.then(function (result) {
-				if (result.code !== 0) {
-					return $scope.documentos = [];
-				}
-				$scope.documentos = result.data;
-
-			});
+		// Data.get('evento/files/' + licitacion.id).then(function (result) {
+		// 	if (result.code !== 0) {
+		// 		return $scope.documentos = [];
+		// 	}
+		// 	$scope.documentos = result.data;
+		//
+		// });
 	}
 	traerDocumentos();
 	$scope.uploader = new FileUploader({
-		url: 'server/api/uploadFileEvento'
+		url: '/api/file/evento',
+		headers: {
+			Authorization: 'Bearer ' + store.get('jwt')
+		},
+		arrayKey: ''
 	});
 	$scope.validPdf = function () {
 		var result = $scope.uploader.queue.filter(function (item) {
@@ -54,13 +57,26 @@ module.exports = function ($scope, $uibModalInstance, Data, Utils, FileUploader,
 		}
 		return undefined;
 	};
+	$scope.uploader.onSuccessItem = function (fileItem, result) {
+		console.info('onSuccessItem', result);
+		if (result.code == 0) {
+			if (idDoc) {
+				Data.toast({code : 0, description : 'Se a ingresado correctamente' });
+			}
+			return idDoc = result.data;
+		}
+		$scope.uploader.cancelAll();
+		$scope.uploader.clearQueue();
+		Data.toast(result);
+
+	};
 	$scope.uploader.onCompleteAll = function () {
-		$scope.uploader.queue[0].remove();
-		$scope.uploader.queue[0].remove();
+		$scope.uploader.clearQueue();
 
 		$scope.uploading = false;
 		$scope.create = true;
 		traerDocumentos();
+		$scope.nombre = idDoc = '';
 
 	};
 	$scope.validarPdf = function (documento) {
@@ -73,14 +89,16 @@ module.exports = function ($scope, $uibModalInstance, Data, Utils, FileUploader,
 		$scope.procesarHtml = fn;
 	};
 	$scope.uploader.onBeforeUploadItem = function (item) {
-		tnombre = $scope.nombre + ' - ' + (item.file.type == "application/pdf" ? 'PDF' : 'HTML');
+		tnombre = $scope.nombre;// + ' - ' + (item.file.type == "application/pdf" ? 'PDF' : 'HTML');
 		item.formData.push({
 			tipo: item.file.type == "application/pdf" ? 'PDF' : 'ZIP',
 			idEvento: licitacion.id,
-			nombre_doc: tnombre // + ' - ' + item.file.type == "application/pdf"? 'PDF' : 'ZIP'
+			nombre_doc: tnombre, // + ' - ' + item.file.type == "application/pdf"? 'PDF' : 'ZIP'
+			idDoc : idDoc
 		});
 		$scope.uploading = true;
 		$scope.create = false;
+		console.info('onBeforeUploadItem');
 	};
 	$scope.ok = function () {
 		$uibModalInstance.close();

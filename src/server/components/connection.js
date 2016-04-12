@@ -21,7 +21,7 @@ module.exports = function (query, data, cb) {
 	pool.query(query, data, onQuery);
 	function onQuery(err, rows) {
 		if (err) {
-			console.log(err);
+			console.log(query, data, err);
 		}
 
 		if (cb){

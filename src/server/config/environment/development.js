@@ -4,7 +4,7 @@ module.exports = {
 	FILES_PATH : path.join(ROOT_PATH, 'uploads')
 };
 module.exports.db = {
-	database : 'db_anadie',
+	database : 'preguntas-respuestas',
 	host : 'localhost',
 	user : 'root',
 	password : ''
