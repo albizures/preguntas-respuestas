@@ -11,13 +11,13 @@ module.exports = function ($scope, $uibModalInstance, Data, Utils, FileUploader,
 	$scope.create = true;
 
 	function traerDocumentos() {
-		// Data.get('evento/files/' + licitacion.id).then(function (result) {
-		// 	if (result.code !== 0) {
-		// 		return $scope.documentos = [];
-		// 	}
-		// 	$scope.documentos = result.data;
-		//
-		// });
+		Data.get('evento/files/' + licitacion.id).then(function (result) {
+			if (result.code !== 0) {
+				return $scope.documentos = [];
+			}
+			$scope.documentos = result.data;
+
+		});
 	}
 	traerDocumentos();
 	$scope.uploader = new FileUploader({

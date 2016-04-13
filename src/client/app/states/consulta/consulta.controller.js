@@ -50,8 +50,7 @@ module.exports = function ($scope, Data, $rootScope, NgTableParams, Utils, $stat
 	}
 	$scope.ver = function (documento) {
 		$state.go('visor', {
-			id: documento.id,
-			documento: documento
+			id: documento.id
 		});
 	};
 	$scope.descargar = function (url) {

@@ -13,7 +13,7 @@ div
 			.col-lg-5
 				label.btn.btn2.btn-default.col-lg-12.truncate(for="html")
 					span(ng-if="!validZip()") {{getZip().file.name}}
-					span(ng-if="validZip()") HTML
+					span(ng-if="validZip()") ZIP
 			input#pdf(ng-if="validPdf()", nv-file-select="", uploader="uploader", type="file", accept="application/pdf", ng-show="false")
 			input#html(ng-if="validZip()", nv-file-select="", uploader="uploader", type="file", accept="application/zip", ng-show="false")
 			button.btn.btn2.btn-success.col-lg-2(ng-disabled="uploader.queue.length < 2 || !nombre", ng-click="uploader.uploadAll()")

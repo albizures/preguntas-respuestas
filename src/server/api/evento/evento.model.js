@@ -38,13 +38,12 @@ module.exports.postDocument = function (data, cb) {
 module.exports.getFileHtml = function (id, cb) {
 	const query = 'call sp_sel_pyr_evento_doc_detID( ? )';
 	connection(query, id, function (err, rows) {
+		console.log('getFileHtml' , rows);
 		let code = 0;
 		if (err) {
 			code = 1;
 			rows = [];
 			err = 'Ocurrio un error, intentelo de nuevo';
-		} else {
-			rows = rows[0];
 		}
 		if (cb) {
 			cb(result(code, err, rows[0]));

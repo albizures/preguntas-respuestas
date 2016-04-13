@@ -63,7 +63,7 @@ module.exports.evento = function (req, res) {
 				idDoc,
 				basePath + idDoc + '/' + req.body.nombre_doc + '.html',
 				0,
-				req.body.tipo
+				'HTML'
 			];
 			modelEvento.postFile(data, onPostFile);
 		}

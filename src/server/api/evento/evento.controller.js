@@ -14,6 +14,7 @@ module.exports.getFilesHtml = function (req, res) {
 };
 
 module.exports.getAuthUsuario = function (req, res) {
+	console.log('este es el id', req.user.id);
 	model.getAuthUsuario(req.user.id, function (result) {
 		res.json(result);
 	});

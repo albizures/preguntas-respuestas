@@ -1,9 +1,10 @@
 const express = require('express'),
 	jwt = require('express-jwt'),
+	config = require('./environment'),
 	livereload = require('express-livereload'),
 	bodyParser = require('body-parser'),
 	secret = require('./environment').secret,
-	BUILD_PATH = require('./environment').BUILD_PATH,
+	BUILD_PATH = config.BUILD_PATH,
 	favicon = require('serve-favicon');
 
 module.exports = function (app) {
@@ -12,6 +13,7 @@ module.exports = function (app) {
 		extended: false
 	}));
 	app.use(express.static(BUILD_PATH));
+	app.use('/uploads/',express.static(config.FILES_PATH));
 	app.use(favicon('src/favicon.ico'));
 	app.use(/*'/api/',*/ jwt({
 		secret: secret,
