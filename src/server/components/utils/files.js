@@ -1,5 +1,6 @@
 const path = require('path'),
 	fs = require('graceful-fs'),
+	iconv = require('iconv-lite'),
 	unzip = require('unzip2');
 
 fs.mkdirParent = function (newPath, cb) {
@@ -15,6 +16,12 @@ fs.mkdirParent = function (newPath, cb) {
 			cb(err);
 		}
 	});
+};
+exports.decode = function decode(oldPath, newPath) {
+	fs.createReadStream(oldPath)
+    .pipe(iconv.decodeStream('win1252'))
+    .pipe(iconv.encodeStream('utf8'))
+    .pipe(fs.createWriteStream(newPath));
 };
 exports.rename = function (oldPath, newPath, cb) {
 	oldPath = path.normalize(oldPath);

@@ -59,6 +59,7 @@ module.exports.evento = function (req, res) {
 		if (err) {
 			resError(res);
 		} else {
+			files.decode(basePath + idDoc + '/_' + req.body.nombre_doc + '.html', basePath + idDoc + '/' + req.body.nombre_doc + '.html');
 			data = [
 				idDoc,
 				basePath + idDoc + '/' + req.body.nombre_doc + '.html',
@@ -83,7 +84,7 @@ module.exports.evento = function (req, res) {
 					return item.indexOf('.html') != -1;
 				})[0];
 				if (fileName) {
-					files.rename(basePath + idDoc + '/' + fileName, basePath + idDoc + '/' + req.body.nombre_doc + '.html', onRenameHtml);
+					files.rename(basePath + idDoc + '/' + fileName, basePath + idDoc + '/_' + req.body.nombre_doc + '.html', onRenameHtml);
 				} else {
 					resError(res);
 				}
