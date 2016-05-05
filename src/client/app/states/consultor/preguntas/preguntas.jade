@@ -1,0 +1,23 @@
+div
+	br
+	button.btn.btn2.btn-warning.pull-right(an-back="") Regresar
+	br
+	section.form-inline
+		br
+		table.table.table-striped(ng-table="tablePreguntas", show-filter="filtro")
+			tr.tr.animate-repeat.preguntas(ng-repeat="i in $data", ng-class="getColor(i.fecha_crea,i.estado)")
+				td(data-title="'Pregunta'", sortable="'pregunta'", width="400", filter="{ 'pregunta': 'text' }")
+					| {{i.pregunta}}
+				td(data-title="'fecha'", sortable="'fecha_crea'", width="400", filter="{ 'fecha_crea': 'text' }")
+					| {{i.fecha_crea | moment:'DD/MM/YYYY h:mma' }}
+				td(data-title="'Ambito'", sortable="'ambito'", width="400", filter="{ 'ambito': 'text' }")
+					| {{i.ambito}}
+				td(data-title="'Organizacion'", sortable="'organizacion'", width="400", filter="{ 'organizacion': 'text' }")
+					| {{i.organizacion}}
+				td(data-title="'Estado'", sortable="'est'", width="400", filter="{ 'est': 'text' }")
+					| {{i.est}}
+				td(data-title="''", width="40")
+					button.btn.btn-primary.btn-xs(type="button", ui-sref="discutir({pregunta : i.id , ambito : i.id_ambito})")
+						| discutir
+					button.btn.btn-primary.btn-xs(type="button", ng-click="irPregunta(i.id_doc_det,i.id_objeto)")
+						span.glyphicon.glyphicon-eye-open

@@ -37,7 +37,7 @@ module.exports = function anVisor(Data, FileUploader) {
 				let ps = $(element).find('p');
 				ps.off('click');
 				ps.on('click', function (evt) {
-					if ($(this).find('span').length == 0 && $(this).find('img').length == 0) {
+					if ($(this).find('span,font').length == 0 && $(this).find('img').length == 0) {
 						return;
 					}
 					scope.estado.comentando = true;

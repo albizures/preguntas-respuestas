@@ -15,9 +15,9 @@ div
 			td(data-title="'Descripcion'", sortable="'descripcion'", width="330", filter="{ 'descripcion': 'text' }")
 				span {{l.descripcion}}
 			td(data-title="'Fecha inicio'", sortable="'fecha_inicio'", width="100", filter="{ 'fecha_inicio': 'text' }")
-				span {{l.fecha_inicio | date:&apos;dd/MM/yyyy&apos;}}
+				span {{l.fecha_inicio | date:'dd/MM/yyyy'}}
 			td(data-title="'Fecha final'", sortable="'fecha_final'", width="100", filter="{ 'fecha_final': 'text' }")
-				span {{l.fecha_final | date:&apos;dd/MM/yyyy&apos;}}
+				span {{l.fecha_final | date:'dd/MM/yyyy'}}
 			td(data-title="'Acciones'", width="100")
 				// <button ng-click="ver(p)"	class="btn btn-default btn-xs">Ver</button>
 				button.btn.btn-primary.btn-xs(ng-click="documentos(l)")

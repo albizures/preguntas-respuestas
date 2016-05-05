@@ -1,6 +1,6 @@
 'use strict';
 
-module.exports = function ngProcessHtml(Data, FileUploader) {
+module.exports = function ngProcessHtml(Data, FileUploader, store) {
 	return {
 		template: require('./ngProcessHtml.jade'),
 		scope: {
@@ -26,6 +26,7 @@ module.exports = function ngProcessHtml(Data, FileUploader) {
 						}
 					}
 				}
+				debugger;
 				newFile = new File([element.get(0).children[0].innerHTML], 'name.html', {
 					type: "text/html"
 				});
@@ -35,7 +36,7 @@ module.exports = function ngProcessHtml(Data, FileUploader) {
 				file.isSuccess = true;
 
 				file.formData.push({
-					'nombre_doc': scope.documento.ubicacion,
+					'ubicacion': scope.documento.HTML,
 					'idEvento': scope.documento.id_evento,
 					'id': scope.documento.id
 				});
@@ -45,7 +46,9 @@ module.exports = function ngProcessHtml(Data, FileUploader) {
 		},
 		controller: function ($scope) {
 			$scope.uploader = new FileUploader({
-				url: 'server/api/uploadFileUPD',
+				url: 'api/file/evento',
+				method : 'PUT',
+				Authorization: 'Bearer ' + store.get('jwt'),
 				headers: 'Content-Type: text/html; charset=UTF-8'
 			});
 			$scope.procesar = function (documento) {

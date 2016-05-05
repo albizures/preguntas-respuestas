@@ -1,6 +1,6 @@
 'use strict';
-// const templateModal = require('./ambitos.modal.jade')(),
-// 		ctrlModal = require('./ambitos.modal.js');
+const templateModal = require('../documentos.modal.jade')(),
+		ctrlModal = require('./documentos.modal.js');
 
 module.exports = function ($uibModal, $scope, Data, NgTableParams, Utils) {
 	Data.get('evento/precalificado')
@@ -26,8 +26,8 @@ module.exports = function ($uibModal, $scope, Data, NgTableParams, Utils) {
 	};
 	$scope.documentos = function (licitacion) {
 		var modalDocumentos = $uibModal.open({
-			templateUrl: 'documentos.licitaciones.modal',
-			controller: 'ModalDocumentosLicitacionCtrl',
+			template: templateModal,
+			controller: ctrlModal,
 			backdrop: 'static',
 			resolve: {
 				licitacion: function () {

@@ -2,11 +2,23 @@
 const modelEvento = require('../evento/evento.model.js'),
 	files = require('../../components/utils/files.js');
 
+module.exports.put = function (req, res) {
+	console.log('put');
+	files.rename(req.file.path, req.body.ubicacion, onRename);
+	function onRename(err) {
+		console.log(err);
+		if (err) {
+			resError(res);
+		} else {
+			res.json({code : 0, description : 'Se a procesado correctamente'});
+		}
+	}
+};
+
 module.exports.file = function (req, res) {
 	console.log(req.file,req.files);
 	res.json([]);
 };
-
 
 module.exports.evento = function (req, res) {
 	let data,

@@ -1,6 +1,17 @@
 'use strict';
 const model = require("./pregunta.model.js");
 
+module.exports.getByEventoAmbito = function (req, res) {
+	let data = [
+		req.params.evento,
+		req.params.ambito,
+		req.user.id
+	];
+	model.getByEventoAmbito(data, function (result) {
+		res.json(result);
+	});
+};
+
 module.exports.getByEventoPrecalificado = function (req, res) {
 	let data = [
 		req.params.id,

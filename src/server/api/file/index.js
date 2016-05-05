@@ -9,6 +9,8 @@ const express = require("express"),
 // se pone multer como un middleware para los archivos y luego
 // el controllador donde ya se puede manejar el archivo
 router.post('/file', upload.single('file'), controller.file);
-router.post('/evento',upload.single('file'), controller.evento);
+router.post('/evento', upload.single('file'), controller.evento);
+
+router.put('/evento', upload.single('file'), controller.put);
 
 module.exports = router;
