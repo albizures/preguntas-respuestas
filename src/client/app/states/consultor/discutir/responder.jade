@@ -1,0 +1,14 @@
+.modal-header
+	h3.modal-title Ingrese su respuesta
+.modal-body
+	label Pregunta:
+	div {{pregunta.pregunta}}
+	br
+	.form-group
+		label Respuesta
+		textarea.form-control(ng-model="pregunta.respuesta", placeholder="Ingrese aqui su respuesta", required="")
+.modal-footer
+	button.btn.btn2.btn-primary(ng-disabled="!pregunta.respuesta", ng-click="responder()")
+		span(ng-if="!uploading") Responder
+		span.glyphicon.glyphicon-refresh.load.active(ng-if="uploading")
+	button.btn.btn2.btn-warning(ng-click="cancel()") Cancelar

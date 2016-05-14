@@ -1,9 +1,45 @@
 'use strict';
 const connection = require("../../components/connection.js"),
-		result = require('../../components/utils/result.js');
+	result = require('../../components/utils/result.js');
 
-module.exports.getByEventoAmbito = function (data, cb) {
-	const query = 'call sp_sel_pyr_pregunta_eventoAmbito( ?, ? , ?)';
+module.exports.postRespuesta = function (data, cb) {
+	const query = 'call sp_upd_pyr_respuesta(?, ?, ?)';
+	connection(query, data, function (err, rows) {
+		let code = 0;
+		if (err) {
+			code = 1;
+			rows = [];
+			err = 'Ocurrio un error al intentar ingresar la respuesta, intentelo de nuevo';
+		}else{
+			rows = rows[0];
+			err = 'Se ingreso correctamente';
+		}
+		if (cb) {
+			cb(result(code, err, rows));
+		}
+	});
+};
+
+module.exports.postComentario = function (data, cb) {
+	const query = 'select fn_ins_pyr_coment( ?, ?, ?, ?) as id';
+	connection(query, data, function (err, rows) {
+		let code = 0;
+		if (err) {
+			code = 1;
+			rows = [];
+			err = 'Ocurrio un error al intentar ingresar el comentario, intentelo de nuevo';
+		}else{
+			rows = rows[0].id;
+			err = 'Se ingreso correctamente';
+		}
+		if (cb) {
+			cb(result(code, err, rows));
+		}
+	});
+};
+
+module.exports.getComentariosByAmbito = function (data, cb) {
+	const query = 'call sp_sel_comentario_ambito( ?, ?, ?)';
 	connection(query, data, function (err, rows) {
 		let code = 0;
 		if (err) {
@@ -15,7 +51,38 @@ module.exports.getByEventoAmbito = function (data, cb) {
 			cb(result(code, err, rows[0]));
 		}
 	});
-}
+};
+
+module.exports.getPreguntaByAmbito = function (data, cb) {
+	const query = 'call sp_sel_pregunta_ambito( ?, ?, ? )';
+	connection(query, data, function (err, rows) {
+		let code = 0;
+		if (err) {
+			code = 1;
+			rows = [];
+			err = 'Ocurrio un error, intentelo de nuevo';
+		}
+		if (cb) {
+			cb(result(code, err, rows[0]));
+		}
+	});
+};
+
+module.exports.getByEventoAmbito = function (data, cb) {
+	const query = 'call sp_sel_pyr_pregunta_eventoAmbito( ?, ? , ?)';
+	
+	connection(query, data, function (err, rows) {
+		let code = 0;
+		if (err) {
+			code = 1;
+			rows = [];
+			err = 'Ocurrio un error, intentelo de nuevo';
+		}
+		if (cb) {
+			cb(result(code, err, rows[0]));
+		}
+	});
+};
 
 module.exports.getByEventoPrecalificado = function (data, cb) {
 	const query = 'call sp_sel_pyr_pregunta_evento_prec( ?, ? )';
@@ -30,7 +97,7 @@ module.exports.getByEventoPrecalificado = function (data, cb) {
 			cb(result(code, err, rows[0]));
 		}
 	});
-}
+};
 
 module.exports.getByEvento = function (id, cb) {
 	const query = 'call sp_sel_pyr_pregunta_evento( ? )';

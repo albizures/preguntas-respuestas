@@ -1,6 +1,51 @@
 'use strict';
 const model = require("./pregunta.model.js");
 
+module,exports.postRespuesta = function (req, res) {
+	let data = [
+		req.body.pregunta,
+		req.user.id,
+		req.body.respuesta
+	];
+		model.postRespuesta(data, function (result) {
+		res.json(result);
+	});
+};
+
+module.exports.postComentario = function (req, res) {
+	let data = [
+		req.body.pregunta,
+		req.user.id,
+		req.body.ambito,
+		req.body.comentario
+	];
+	model.postComentario(data, function (result) {
+		res.json(result);
+	});
+};
+
+module.exports.getComentariosByAmbito = function (req, res) {
+	let data = [
+		req.params.pregunta,
+		req.user.id,
+		req.params.ambito
+	];
+	model.getComentariosByAmbito(data, function (result) {
+		res.json(result);
+	});
+};
+
+module.exports.getPreguntaByAmbito = function (req, res) {
+	let data = [
+		req.params.pregunta,
+		req.user.id,
+		req.params.ambito
+	];
+	model.getPreguntaByAmbito(data, function (result) {
+		res.json(result);
+	});
+};
+
 module.exports.getByEventoAmbito = function (req, res) {
 	let data = [
 		req.params.evento,

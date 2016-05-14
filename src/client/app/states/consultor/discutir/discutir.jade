@@ -1,0 +1,44 @@
+.row
+	br
+	br
+	.col-md-8.col-md-offset-2
+		button.btn.btn2.btn-primary(ng-if="pregunta.secretario == 'S'", ng-click="responder()") responder
+		button.btn.btn2.btn-warning.pull-right(an-back="") Regresar
+		br
+		br
+		.panel.panel-default
+			.panel-body(style="font-size: 12px;")
+				.col-md-6
+					label Evento:
+					p {{pregunta.nombre}}
+					label Documento:
+					p {{pregunta.nombre_doc}}
+					label Nombre:
+					p {{pregunta.nombres }} {{pregunta.apellidos}}
+				.col-md-6
+					label Fecha creacion:
+					p {{pregunta.fecha_crea}}
+					label ID:
+					p {{pregunta.id_objeto}}
+				.col-md-12
+					hr
+					label Parrafo:
+					p {{pregunta.parrafo}}
+					hr
+					label Pregunta:
+					p(style="font-size: 14px;") {{pregunta.pregunta}}
+		hr
+		div
+			textarea.form-control(ng-model="pregunta.newComentario", rows="3", placeholder="Ingrese aqui su comentario")
+			br
+			button.btn.btn2.btn-success(ng-disabled="!pregunta.newComentario", ng-click="comentar()")
+				span(ng-if="!uploading") Comentar
+				span.glyphicon.glyphicon-refresh.load.active(ng-if="uploading")
+		br
+		.panel.panel-default.comentario(ng-repeat="c in pregunta.comentarios")
+			.panel-body
+				.nombre
+					| {{c.nombres}} {{c.apellidos}} comento:
+				p {{c.comentario}}
+				div
+					span.fecha {{ timeFromNow(c.fecha_coment) }}

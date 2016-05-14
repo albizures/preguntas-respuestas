@@ -5,6 +5,7 @@ module.exports = angular.module('app.states', []).name;
 // injector
 angular.module('app.states').config(require('./ambitos/index.js'));
 angular.module('app.states').config(require('./consulta/index.js'));
+angular.module('app.states').config(require('./consultor/discutir/index.js'));
 angular.module('app.states').config(require('./consultor/index.js'));
 angular.module('app.states').config(require('./consultor/preguntas/index.js'));
 angular.module('app.states').config(require('./licitaciones/index.js'));

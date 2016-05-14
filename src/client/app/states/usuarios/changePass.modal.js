@@ -22,11 +22,11 @@ module.exports = function ($scope, Data, Utils, $uibModalInstance, administrador
 			.then(function (result) {
 				Data.toast(result);
 				if (result.status !== 'error') {
-					$modalInstance.close();
+					$uibModalInstance.close();
 				}
 			});
 	};
 	$scope.cancel = function () {
-		$modalInstance.dismiss('cancel');
+		$uibModalInstance.dismiss('cancel');
 	};
 };
