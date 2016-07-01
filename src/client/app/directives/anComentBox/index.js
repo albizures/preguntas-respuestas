@@ -1,6 +1,7 @@
 'use strict';
 const moment = require("moment");
-module.exports = function anComentBox(Data, Utils) {
+
+function anComentBox(Data, Utils) {
 	return {
 		template: require('./coment.box.jade')(),
 		restrict: 'AE',
@@ -83,4 +84,6 @@ module.exports = function anComentBox(Data, Utils) {
 			//};
 		}
 	};
-};
+}
+
+module.exports = anComentBox;

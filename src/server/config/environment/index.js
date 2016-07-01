@@ -1,3 +1,5 @@
+console.log(process.env.PORT, process.env.NODE_ENV);
+
 const path = require('path'),
 	_ = require('lodash'),
 	env = process.env.NODE_ENV = process.env.NODE_ENV || 'development';
@@ -15,7 +17,7 @@ const path = require('path'),
 		APP_PATH,
 		MODULES_PATH,
 		ASSETS_PATH,
-		PORT : 8080,
+		PORT : process.env.PORT || 8080,
 		secret : '9482af1dce452c46'
 	};
 //require('crypto').randomBytes(8).toString('hex');

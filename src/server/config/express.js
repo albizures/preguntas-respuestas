@@ -25,9 +25,11 @@ module.exports = function (app) {
 		//method: 'POST',
 		path: ['/api/session/']
 	}));
-	app.use(function (err, req, res, next) {return next();});
-	livereload(app, {
-		port: '35730',
-		watchDir: BUILD_PATH
-	});
+	if (!config.isProduction) {
+		app.use(function (err, req, res, next) {return next();});
+		livereload(app, {
+			port: '35730',
+			watchDir: BUILD_PATH
+		});
+	}
 }

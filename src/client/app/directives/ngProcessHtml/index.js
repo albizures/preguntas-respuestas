@@ -1,6 +1,7 @@
 'use strict';
 
-module.exports = function ngProcessHtml(Data, FileUploader, store) {
+
+function ngProcessHtml(Data, FileUploader, store) {
 	return {
 		template: require('./ngProcessHtml.jade'),
 		scope: {
@@ -59,4 +60,6 @@ module.exports = function ngProcessHtml(Data, FileUploader, store) {
 			$scope.addHandlerProcess($scope.procesar);
 		}
 	};
-};
+}
+
+module.exports = ngProcessHtml;

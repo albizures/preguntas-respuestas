@@ -1,6 +1,7 @@
 'use strict';
 
-module.exports = function anPreview() {
+
+function anPreview() {
 	return {
 		scope: {
 			'url': '=anPreview'
@@ -32,4 +33,6 @@ module.exports = function anPreview() {
 			});
 		}
 	};
-};
+}
+
+module.exports = anPreview; 

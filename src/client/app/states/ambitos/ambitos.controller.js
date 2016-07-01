@@ -64,20 +64,19 @@ module.exports = function ($scope, Data, Utils, $uibModal, $rootScope, NgTablePa
 			if (!result) {
 				return;
 			}
-			Data.delete('ambito/' + id)
-				.then(function (result) {
-					Data.toast(result);
-					if (result.code === 0) {
-						for (let index in $scope.ambitos) {
-							if ($scope.ambitos[index].id == id) {
-								$scope.ambitos.splice(index, 1);
-								table();
-								return;
-							}
-						}
+			Data.delete('ambito/' + id).then(function (result) {
+				Data.toast(result);
+				if (result.code !== 0) {
+					return;
+				}
+				for (var item in $scope.ambitos) {
+					if ($scope.ambitos[item].id == id) {
+						$scope.ambitos.splice(item, 1);
+						table();
+						return;
 					}
-
-				});
+				}
+			});
 		}
 	};
 };

@@ -1,6 +1,7 @@
 'use strict';
 
-module.exports = function anBack($window) {
+
+function anBack($window) {
 	return {
 		restrict: 'A',
 		link: function (scope, element, attrs) {
@@ -9,4 +10,5 @@ module.exports = function anBack($window) {
 			});
 		}
 	};
-};
+}
+module.exports = anBack;

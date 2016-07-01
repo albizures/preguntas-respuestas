@@ -1,6 +1,6 @@
 'use strict';
 const $ = require("jquery");
-module.exports = function menu() {
+function menu() {
 	return {
 		restrict: 'A',
 		scope: {
@@ -15,4 +15,6 @@ module.exports = function menu() {
 			element.addClass(scope.cls);
 		}
 	};
-};
+}
+
+module.exports = menu; 

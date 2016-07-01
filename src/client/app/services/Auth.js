@@ -1,6 +1,7 @@
 'use strict';
 angular.module('app.services').factory('Auth', function ($rootScope, Data, Utils,store, $state, jwtHelper) {
-	$rootScope.usuario = jwtHelper.decodeToken(store.get('jwt')) || null;
+	var jwt = store.get('jwt');
+	$rootScope.usuario = jwt? jwtHelper.decodeToken(jwt) : null;
 	//$cookieStore.remove('user');
 	$rootScope.$watch('usuario', function (newVal) {
 		console.log(newVal);

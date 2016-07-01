@@ -1,5 +1,5 @@
 'use strict';
-module.exports = function anVisor(Data, FileUploader) {
+function anVisor(Data, FileUploader) {
 	return {
 		template: require('./visor.jade')(),
 		restrict: 'AE',
@@ -130,4 +130,6 @@ module.exports = function anVisor(Data, FileUploader) {
 		}
 
 	};
-};
+}
+
+module.exports = anVisor;

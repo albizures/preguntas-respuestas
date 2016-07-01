@@ -1,7 +1,8 @@
 'use strict';
 const $ = require("jquery");
 
-module.exports = function menuItem($compile) {
+
+function menuItem($compile) {
 	return {
 		restrict: 'A',
 		replace: true,
@@ -41,4 +42,6 @@ module.exports = function menuItem($compile) {
 			$compile(element.contents())(scope);
 		}
 	};
-};
+}
+
+module.exports = menuItem; 

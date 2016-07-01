@@ -4,6 +4,7 @@ const webpack = require('webpack'),
 	HtmlWebpackPlugin = require('html-webpack-plugin'),
 	ExtractTextPlugin = require('extract-text-webpack-plugin');
 
+const isProduction =  process.env.NODE_ENV == 'production';
 const ROOT_PATH = path.resolve(__dirname),
 	APP_PATH = path.resolve(ROOT_PATH, 'client', 'app', 'index.js'),
 	CLIENT_PATH = path.resolve(ROOT_PATH, 'client'),
@@ -41,7 +42,7 @@ module.exports = {
 		loaders: [{
 			test: /\.js$/,
 			include: CLIENT_PATH,
-			loader: "babel-loader" //?stage=0"]
+			loader: "babel-loader!nginjector-loader" //?stage=0"]
 		}, {
 			test: /\.jade$/,
 			loader: 'jade-loader'
@@ -63,13 +64,13 @@ module.exports = {
 			]
 		}, {
 			test: /\.css?$/,
-			loaders: ExtractTextPlugin.extract('style-loader', 'css-loader')
+			loaders: isProduction? 'style-loader!css-loader' : ExtractTextPlugin.extract('style-loader', 'css-loader')
 		},{
       test: /\.css$/,
-      loader: ExtractTextPlugin.extract('style', 'css?sourceMap')
+      loader: isProduction? 'style!css' : ExtractTextPlugin.extract('style', 'css?sourceMap')
     }, {
 			test: /\.styl?$/,
-			loader: ExtractTextPlugin.extract('style-loader', 'css-loader!stylus-loader')
+			loader: isProduction? 'style-loader!css-loader!stylus-loader' : ExtractTextPlugin.extract('style-loader', 'css-loader!stylus-loader')
 				//loader: 'style-loader!css-loader!stylus-loader'
 		}, {
 			test: /\.html$/,
@@ -89,8 +90,34 @@ module.exports = {
 		root: MODULES_PATH
 	}
 }
-
-if (!process.env.PRODUCTION) {
+console.log(isProduction, process.env.NODE_ENV);
+if (isProduction) {
+	module.exports.devtool = undefined;
+	module.exports.plugins = [
+		new webpack.ContextReplacementPlugin(/moment[\/\\]locale$/, /es/),
+		new HtmlWebpackPlugin({
+			title: 'Preguntas y respuestas',
+			filename: 'index.html',
+			template: path.resolve(CLIENT_PATH, 'app', 'index.jade')
+		}),
+		new webpack.optimize.UglifyJsPlugin({
+			keep_fnames : true,
+			minimize: true,
+			mangle: false
+		})
+	];
+	webpack(module.exports).run(function (err, stats) {
+  if (err) {
+    console.log('Error', err);
+  } else {
+    console.log('ended', err);
+    console.log(stats.toString({
+      colors: true
+    }));
+  }
+});
+}
+if (!isProduction) {
 	const compiler = webpack(module.exports);
 	const ProgressPlugin = require('webpack/lib/ProgressPlugin');
 	// new ProgressPlugin(function (percentage, msg) {

@@ -1,7 +1,22 @@
+var optionsProd = {
+	"watch" : [
+		"xxx"
+	],
+	env: {
+		NODE_ENV : 'development',
+		PORT: 80
+	},
+	"ignore":[
+		"node_modules/",
+		"dist/",
+		"src/server/",
+		"src/client/",
+		"uploads/"
+	]
+};
+
 module.exports = function (grunt) {
 	require("load-grunt-tasks")(grunt);
-
-	var port = process.env.PORT || 9002;
 
 	grunt.initConfig({
 		watch: {
@@ -31,6 +46,12 @@ module.exports = function (grunt) {
 		concurrent: {
 			dev: {
 				tasks: ['nodemon:server', 'nodemon:webpack', 'watch'],
+				options: {
+					logConcurrentOutput: true
+				}
+			},
+			prod : {
+				tasks: ['nodemon:serverProd', 'nodemon:webpackProd'],
 				options: {
 					logConcurrentOutput: true
 				}
@@ -104,6 +125,14 @@ module.exports = function (grunt) {
 			}
 		},
 		nodemon: {
+			webpackProd : {
+				script: 'src/webpack.local.config.js',
+				options : optionsProd
+			},
+			serverProd : {
+				script: 'index.js',
+				options : optionsProd
+			},
 			webpack : {
 				script: 'src/webpack.local.config.js',
 				options : {
@@ -146,5 +175,9 @@ module.exports = function (grunt) {
 		'injector:stylus',
 		'injector:services',
 		'concurrent'
+	]);
+
+	grunt.registerTask('prod', [
+		'concurrent:prod'
 	]);
 }

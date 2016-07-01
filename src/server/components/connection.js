@@ -11,6 +11,10 @@ pool.on('enqueue', function () {
 	console.log('**************************************');
 	console.log('Waiting for available connection slot');
 });
+pool.on('error', function () {
+	console.log('**************************************');
+	console.log('error');
+});
 module.exports = function (query, data, cb) {
 	if (typeof data === 'function' && typeof cb === 'function') {
 		data = undefined;
